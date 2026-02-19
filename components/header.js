@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header>
+    <header className="border-b-[#6B7280] border-b">
       <nav className="bg-[#12100A] text-white px-16 py-6 flex items-center justify-between font-work">
         {/* Logo Section */}
         <div className="flex items-center gap-2 cursor-pointer">
