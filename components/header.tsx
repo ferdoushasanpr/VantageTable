@@ -2,7 +2,7 @@ import Image from "next/image";
 import NavIcon from "@/assets/icons/Icon.png";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header(): React.ReactNode {
   return (
     <header className="border-b-[#6B7280] border-b">
       <nav className="bg-[#12100A] text-white px-16 py-6 flex items-center justify-between font-work">

@@ -1,9 +1,12 @@
 import MenuCard from "./menu-card";
 import { Flame, Leaf, Microwave, MoveRight } from "lucide-react";
 import WagyuSteakImage from "@/assets/images/Wagyu-Steak.png";
+import TrufflePastaImage from "@/assets/images/Truffle-Pasta.png";
+import SearedScallopsImage from "@/assets/images/Seared-Scallops.png";
 import Link from "next/link";
+import React from "react";
 
-export default function LatestMenu() {
+export default function LatestMenu(): React.ReactNode {
   return (
     <section className="bg-[#12100A]/90 py-20">
       <div className="container mx-auto">
@@ -36,7 +39,7 @@ export default function LatestMenu() {
             recommendation={"chef's recommendation"}
           />
           <MenuCard
-            image={WagyuSteakImage}
+            image={TrufflePastaImage}
             title={"Truffle Pasta"}
             price={45}
             desc={`Handmade tagliatelle, fresh black truffle shavings, aged parmesan cream, and organic herbs.`}
@@ -46,7 +49,7 @@ export default function LatestMenu() {
             recommendation={"Vegetarian Option"}
           />
           <MenuCard
-            image={WagyuSteakImage}
+            image={SearedScallopsImage}
             title={"Seared Scallops"}
             price={38}
             desc={`Hokkaido jumbo scallops, smoky cauliflower purée, pancetta crisp, and lemon oil.`}

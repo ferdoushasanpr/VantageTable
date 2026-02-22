@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CalendarDays, CircleStar } from "lucide-react";
 import HeroImage from "@/assets/images/Gourmet-Plating.png";
 
-export default function HeroSection() {
+export default function HeroSection(): React.ReactNode {
   return (
     <section className="bg-[#12100A] py-28 px-6">
       <div className="max-w-7xl mx-auto">
