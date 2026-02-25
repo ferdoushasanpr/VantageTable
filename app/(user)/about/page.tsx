@@ -108,7 +108,7 @@ const AboutPage = (): React.ReactNode => {
         </h3>
         <div className="flex justify-center gap-6">
           <Link
-            href="/reservations"
+            href="/reserve"
             className="bg-[#f4b433] text-black font-work px-10 py-4 rounded-full font-bold hover:bg-[#e2a32b] transition-colors"
           >
             Reserve a Table
