@@ -13,7 +13,7 @@ import NavItem from "./sidebar-navitem";
 
 export default function Sidebar(): React.ReactNode {
   return (
-    <aside className="w-64 bg-[#1a1610] flex flex-col p-6 border-r border-stone-800/50">
+    <aside className="w-64 bg-[#1a1610] flex flex-col p-6 border-r border-stone-800/50 sticky top-0 h-screen">
       <div className="flex items-center gap-3 mb-10">
         <Image src={NavIcon} alt="Gourmet Haven Logo" width={18} height={24} />
         <div>
