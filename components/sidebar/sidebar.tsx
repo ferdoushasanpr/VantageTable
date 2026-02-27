@@ -30,15 +30,31 @@ export default function Sidebar(): React.ReactNode {
         <NavItem
           icon={<LayoutDashboard size={20} />}
           label="Dashboard"
-          active
+          href="/dashboard"
         />
-        <NavItem icon={<PlusCircle size={20} />} label="Add Food" />
-        <NavItem icon={<UtensilsCrossed size={20} />} label="Food List" />
-        <NavItem icon={<CalendarDays size={20} />} label="Reservations" />
+        <NavItem
+          icon={<PlusCircle size={20} />}
+          label="Add Food"
+          href="/addmenu"
+        />
+        <NavItem
+          icon={<UtensilsCrossed size={20} />}
+          label="Food List"
+          href="/menulist"
+        />
+        <NavItem
+          icon={<CalendarDays size={20} />}
+          label="Reservations"
+          href="/reservations"
+        />
       </nav>
 
       <div className="mt-auto space-y-6">
-        <NavItem icon={<Settings size={20} />} label="Settings" />
+        <NavItem
+          icon={<Settings size={20} />}
+          label="Settings"
+          href="/settings"
+        />
 
         <button className="w-full bg-[#2a1a15] text-red-400 py-3 rounded-xl flex items-center justify-center gap-2 font-medium font-work hover:bg-red-950/30 transition-colors">
           <LogOut size={18} />

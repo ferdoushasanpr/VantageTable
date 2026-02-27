@@ -1,6 +1,5 @@
 import React from "react";
 import { Search, Bell } from "lucide-react";
-import Sidebar from "@/components/sidebar/sidebar";
 import StatCard from "@/components/statcard";
 
 const DashboardPage = (): React.ReactNode => {
