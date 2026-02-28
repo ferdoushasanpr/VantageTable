@@ -76,7 +76,6 @@ const MenulistPage = (): React.ReactNode => {
 
   return (
     <main className="flex-1 p-10 flex flex-col">
-      {/* Header Section */}
       <header className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-4">
           <h2 className="text-2xl font-bold text-white">Food Menu</h2>
@@ -104,7 +103,6 @@ const MenulistPage = (): React.ReactNode => {
         </div>
       </header>
 
-      {/* Category Filters */}
       <div className="flex gap-3 mb-8">
         <FilterTab label="All Menu" active />
         <FilterTab label="Appetizers" />
@@ -114,7 +112,6 @@ const MenulistPage = (): React.ReactNode => {
         <FilterTab label="Specialties" />
       </div>
 
-      {/* Menu Table */}
       <div className="bg-[#1D1912] rounded-3xl border border-[#2A2419] overflow-hidden flex-1 shadow-2xl">
         <table className="w-full text-left">
           <thead>
@@ -175,7 +172,6 @@ const MenulistPage = (): React.ReactNode => {
           </tbody>
         </table>
 
-        {/* Pagination Footer */}
         <footer className="p-6 border-t border-[#2A2419] flex justify-between items-center bg-[#1D1912]">
           <p className="text-xs text-[#8E8370]">Showing 1 to 4 of 128 items</p>
           <div className="flex items-center gap-2">
