@@ -22,9 +22,6 @@ export default function StatCard({
         <div className="flex items-baseline gap-4">
           <h4 className="text-6xl font-bold text-white font-work">{value}</h4>
         </div>
-        <p className="text-stone-600 text-xs font-work mt-4">
-          Confirmed bookings this month
-        </p>
       </div>
       <UtensilsCrossed
         size={120}
