@@ -26,7 +26,7 @@ export default function Header(): React.ReactNode {
             Menu
           </Link>
           <Link
-            href="/reserve/reservations"
+            href="bookings"
             className="hover:text-[#F4AF25] transition-colors text-sm"
           >
             Reservations

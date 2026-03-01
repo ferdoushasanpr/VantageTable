@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, Clock, Users, Phone, User, CheckCircle } from "lucide-react";
+import { Calendar, Clock, Users, Phone, User } from "lucide-react";
 
 const reservations = [
   {
