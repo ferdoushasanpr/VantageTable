@@ -77,15 +77,6 @@ const ReservationsPage = (): React.ReactNode => {
             Manage and monitor all guest bookings.
           </p>
         </div>
-        <div className="flex items-center gap-4">
-          <div className="p-2.5 rounded-xl bg-[#1D1912] border border-[#2A2419] text-[#8E8370] hover:text-white cursor-pointer transition-colors">
-            <Bell size={20} />
-          </div>
-          <button className="bg-[#F5A623] text-black px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-[#d98f1d] transition-all shadow-lg shadow-[#F5A623]/20">
-            <Plus size={18} />
-            Add Reservation
-          </button>
-        </div>
       </header>
 
       {/* Filters and Tabs */}

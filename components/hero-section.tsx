@@ -28,13 +28,13 @@ export default function HeroSection(): React.ReactNode {
             </p>
             <div className="flex my-10 gap-4">
               <Link
-                href="reservations"
+                href="reserve"
                 className="flex gap-2 bg-[#F4AF25] hover:bg-[#e69f26] text-black font-bold font-work py-4.5 px-8 rounded-full transition-all text-lg"
               >
                 Reserve Now <CalendarDays />
               </Link>
               <Link
-                href="reservations"
+                href="menu"
                 className="bg-[#12100A] text-white font-bold font-work py-4.5 px-8 rounded-full transition-all text-lg outline outline-[#6B7280]"
               >
                 View Menu
