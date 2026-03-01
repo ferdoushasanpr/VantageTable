@@ -90,9 +90,11 @@ const DashboardPage = (): React.ReactNode => {
       </header>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 gap-6 mb-10">
+      <div className="grid grid-cols-4 gap-6 mb-10">
         <StatCard title="Total Food Items" value="42" />
         <StatCard title="Total Reservations" value="128" />
+        <StatCard title="Total Guests" value="48" />
+        <StatCard title="Pending Requests" value="07" />
       </div>
 
       {/* Reservations Table */}
