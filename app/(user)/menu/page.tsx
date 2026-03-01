@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const menuData = {
@@ -77,7 +78,11 @@ const MenuPage = (): React.ReactNode => {
                 <div key={index} className="group">
                   <div className="flex justify-between items-baseline mb-3 border-b border-dashed border-gray-800 pb-1 group-hover:border-[#F3B340]/30 transition-colors">
                     <h3 className="text-lg font-medium tracking-wide group-hover:text-[#F3B340] transition-colors">
-                      {item.name}
+                      <Link
+                        href={`/menu/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                      >
+                        {item.name}
+                      </Link>
                     </h3>
                     <span className="text-[#F3B340] font-semibold font-mono tracking-tighter">
                       {item.price}
