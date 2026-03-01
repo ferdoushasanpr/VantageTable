@@ -1,15 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Image as ImageIcon,
-  Type,
-  Upload,
-  RefreshCw,
-  Save,
-  Trash2,
-  Plus,
-} from "lucide-react";
+import { Image as ImageIcon, Type, Upload, Save, Plus } from "lucide-react";
+import ImageCard from "@/components/image-card";
 
 const SettingsPage = (): React.ReactNode => {
   const [carouselImages, setCarouselImages] = useState([
@@ -88,6 +81,40 @@ const SettingsPage = (): React.ReactNode => {
                   <Save size={18} />
                   Update Content
                 </button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div className="col-span-5">
+          <section className="bg-[#1D1912] p-8 rounded-3xl border border-[#2A2419] shadow-xl h-full">
+            <div className="flex items-center justify-between mb-8 border-b border-[#2A2419] pb-4">
+              <div className="flex items-center gap-3">
+                <ImageIcon size={22} className="text-[#F5A623]" />
+                <h3 className="text-xl font-semibold text-white">
+                  Hero Carousel
+                </h3>
+              </div>
+              <button className="text-[#F5A623] hover:text-white transition-colors">
+                <Plus size={24} />
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              {carouselImages.map((img) => (
+                <ImageCard key={img.id} url={img.url} label={img.label} />
+              ))}
+
+              {/* Empty State / Add New Slot */}
+              <div className="border-2 border-dashed border-[#332D21] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-[#F5A623]/50 transition-colors">
+                <Upload
+                  size={32}
+                  className="text-[#8E8370] mb-2"
+                  strokeWidth={1.5}
+                />
+                <p className="text-xs text-[#8E8370] font-medium">
+                  Drop new carousel image here
+                </p>
               </div>
             </div>
           </section>

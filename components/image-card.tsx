@@ -2,21 +2,16 @@ import { RefreshCw, Trash2 } from "lucide-react";
 import React from "react";
 
 interface ImageCardProps {
-  id: string;
   url: string;
   label: string;
 }
 
 export default function ImageCard({
-  id,
   url,
   label,
 }: ImageCardProps): React.ReactNode {
   return (
-    <div
-      key={id}
-      className="bg-[#231F16] p-4 rounded-2xl border border-[#332D21] flex gap-4 group"
-    >
+    <div className="bg-[#231F16] p-4 rounded-2xl border border-[#332D21] flex gap-4 group">
       <div className="relative w-24 h-32 shrink-0 overflow-hidden rounded-xl border border-[#2A2419]">
         <img
           src={url}
