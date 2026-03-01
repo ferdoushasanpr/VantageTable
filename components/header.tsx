@@ -6,7 +6,6 @@ export default function Header(): React.ReactNode {
   return (
     <header className="border-b-[#6B7280] border-b">
       <nav className="bg-[#12100A] text-white px-16 py-6 flex items-center justify-between font-work">
-        {/* Logo Section */}
         <div className="flex items-center gap-2 cursor-pointer">
           <Image
             src={NavIcon}
@@ -19,7 +18,6 @@ export default function Header(): React.ReactNode {
           </Link>
         </div>
 
-        {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-10">
           <Link
             href="menu"
@@ -28,7 +26,7 @@ export default function Header(): React.ReactNode {
             Menu
           </Link>
           <Link
-            href="reservations"
+            href="/reserve/reservations"
             className="hover:text-[#F4AF25] transition-colors text-sm"
           >
             Reservations
