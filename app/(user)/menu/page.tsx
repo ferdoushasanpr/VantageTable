@@ -55,22 +55,22 @@ const menuData = {
 
 const MenuPage = (): React.ReactNode => {
   return (
-    <div className="min-h-screen bg-[#0C0C0C] text-white font-sans selection:bg-[#F3B340] selection:text-black">
+    <div className="min-h-screen bg-[#0C0C0C] text-white selection:bg-primary selection:text-black">
       <header className="py-24 text-center">
-        <span className="text-[#F3B340] uppercase tracking-[0.4em] text-[10px] font-bold">
+        <span className="text-primary uppercase tracking-[0.4em] text-[10px] font-bold">
           Fine Dining Excellence
         </span>
-        <h1 className="text-5xl md:text-7xl font-serif mt-6 mb-4 tracking-tight">
-          Culinary <span className="text-[#F3B340]">Menu</span>
+        <h1 className="text-5xl md:text-7xl mt-6 mb-4 tracking-tight">
+          Culinary <span className="text-primary">Menu</span>
         </h1>
-        <div className="w-16 h-px bg-[#F3B340] mx-auto mt-8 opacity-50"></div>
+        <div className="w-16 h-px bg-primary mx-auto mt-8 opacity-50"></div>
       </header>
 
       <main className="max-w-6xl mx-auto px-8 pb-32">
         {Object.entries(menuData).map(([category, items]) => (
           <section key={category} className="mb-20 last:mb-0">
             <div className="flex items-center gap-6 mb-12">
-              <h2 className="text-[#F3B340] text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap">
+              <h2 className="text-primary text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap">
                 {category}
               </h2>
               <div className="w-full h-px bg-linear-to-r from-gray-800 to-transparent"></div>
@@ -80,30 +80,30 @@ const MenuPage = (): React.ReactNode => {
               {items.map((item, index) => (
                 <div
                   key={index}
-                  className="group border border-gray-800 p-2 rounded-sm hover:border-[#F3B340]/30 transition-colors"
+                  className="group border border-gray-800 p-4 rounded-sm hover:border-[#F3B340]/30 transition-colors"
                 >
-                  <div className="flex gap-2">
-                    <div className="w-24 h-24 -ml-10 rounded-sm overflow-hidden shrink-0">
-                      <img src={item.img} alt={item.name} />
-                    </div>
-                    <div>
-                      <div className="flex justify-between items-baseline mb-3 border-b border-dashed border-gray-800 pb-1 group-hover:border-[#F3B340]/30 transition-colors">
-                        <h3 className="text-lg font-medium tracking-wide group-hover:text-[#F3B340] transition-colors">
-                          <Link
-                            href={`/menu/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                          >
-                            {item.name}
-                          </Link>
-                        </h3>
-                        <span className="text-[#F3B340] font-semibold font-mono tracking-tighter">
-                          {item.price}
-                        </span>
+                  <Link
+                    href={`/menu/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    <div className="flex gap-2">
+                      <div className="w-24 h-24 -ml-10 rounded-sm overflow-hidden shrink-0">
+                        <img src={item.img} alt={item.name} />
                       </div>
-                      <p className="text-gray-500 text-sm leading-relaxed italic">
-                        {item.description}
-                      </p>
+                      <div>
+                        <div className="flex justify-between items-baseline mb-3 border-b border-dashed border-gray-800 pb-1 group-hover:border-[#F3B340]/30 transition-colors">
+                          <h3 className="text-lg font-medium tracking-wide group-hover:text-primary transition-colors">
+                            {item.name}
+                          </h3>
+                          <span className="text-primary font-semibold tracking-tighter">
+                            {item.price}
+                          </span>
+                        </div>
+                        <p className="text-gray-500 text-sm leading-relaxed italic">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>

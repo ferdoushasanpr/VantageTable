@@ -27,7 +27,7 @@ const SettingsPage = (): React.ReactNode => {
     <main className="flex-1 p-10 overflow-y-auto">
       <header className="mb-10">
         <h2 className="text-3xl font-bold text-white mb-2">Website Settings</h2>
-        <p className="text-[#8E8370]">
+        <p className="text-light">
           Update your homepage content and visual assets.
         </p>
       </header>
@@ -36,7 +36,7 @@ const SettingsPage = (): React.ReactNode => {
         <div className="col-span-7 space-y-8">
           <section className="bg-[#1D1912] p-8 rounded-3xl border border-[#2A2419] shadow-xl">
             <div className="flex items-center gap-3 mb-8 border-b border-[#2A2419] pb-4">
-              <Type size={22} className="text-[#F5A623]" />
+              <Type size={22} className="text-primary" />
               <h3 className="text-xl font-semibold text-white">
                 Hero Section Text
               </h3>
@@ -44,40 +44,37 @@ const SettingsPage = (): React.ReactNode => {
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm text-[#F5A623] mb-2 font-medium">
+                <label className="block text-sm text-primary mb-2 font-medium">
                   Hero Title
                 </label>
                 <input
                   type="text"
-                  defaultValue="Exquisite Dining Experience"
                   className="w-full bg-[#120F08] border border-[#2A2419] rounded-xl p-4 text-white focus:outline-none focus:border-[#F5A623] transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-[#F5A623] mb-2 font-medium">
+                <label className="block text-sm text-primary mb-2 font-medium">
                   Hero Subtitle
                 </label>
                 <input
                   type="text"
-                  defaultValue="Taste the perfection in every bite"
                   className="w-full bg-[#120F08] border border-[#2A2419] rounded-xl p-4 text-white focus:outline-none focus:border-[#F5A623] transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-[#F5A623] mb-2 font-medium">
+                <label className="block text-sm text-primary mb-2 font-medium">
                   Description
                 </label>
                 <textarea
-                  rows="4"
-                  defaultValue="From farm-to-table freshness to world-class culinary techniques, we offer a dining experience that stays with you long after the meal is over."
+                  rows={4}
                   className="w-full bg-[#120F08] border border-[#2A2419] rounded-xl p-4 text-white focus:outline-none focus:border-[#F5A623] resize-none"
                 ></textarea>
               </div>
 
               <div className="pt-4">
-                <button className="flex items-center gap-2 bg-[#F5A623] text-black px-8 py-3 rounded-xl font-bold hover:bg-[#d98f1d] transition-all">
+                <button className="flex items-center gap-2 bg-primary text-black px-8 py-3 rounded-xl font-bold hover:bg-[#d98f1d] transition-all">
                   <Save size={18} />
                   Update Content
                 </button>
@@ -90,12 +87,12 @@ const SettingsPage = (): React.ReactNode => {
           <section className="bg-[#1D1912] p-8 rounded-3xl border border-[#2A2419] shadow-xl h-full">
             <div className="flex items-center justify-between mb-8 border-b border-[#2A2419] pb-4">
               <div className="flex items-center gap-3">
-                <ImageIcon size={22} className="text-[#F5A623]" />
+                <ImageIcon size={22} className="text-primary" />
                 <h3 className="text-xl font-semibold text-white">
                   Hero Carousel
                 </h3>
               </div>
-              <button className="text-[#F5A623] hover:text-white transition-colors">
+              <button className="text-primary hover:text-white transition-colors">
                 <Plus size={24} />
               </button>
             </div>
@@ -109,10 +106,10 @@ const SettingsPage = (): React.ReactNode => {
               <div className="border-2 border-dashed border-[#332D21] rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-[#F5A623]/50 transition-colors">
                 <Upload
                   size={32}
-                  className="text-[#8E8370] mb-2"
+                  className="text-light mb-2"
                   strokeWidth={1.5}
                 />
-                <p className="text-xs text-[#8E8370] font-medium">
+                <p className="text-xs text-light font-medium">
                   Drop new carousel image here
                 </p>
               </div>

@@ -17,10 +17,8 @@ export default function Sidebar(): React.ReactNode {
       <div className="flex items-center gap-3 mb-10">
         <Image src={NavIcon} alt="Gourmet Haven Logo" width={18} height={24} />
         <div>
-          <h1 className="font-bold font-work text-lg leading-tight">
-            GourmetAdmin
-          </h1>
-          <p className="text-[10px] font-work uppercase tracking-widest text-stone-500">
+          <h1 className="font-bold text-lg leading-tight">GourmetAdmin</h1>
+          <p className="text-[10px] uppercase tracking-widest text-stone-500">
             Management Suite
           </p>
         </div>
@@ -56,7 +54,7 @@ export default function Sidebar(): React.ReactNode {
           href="/settings"
         />
 
-        <button className="w-full bg-[#2a1a15] text-red-400 py-3 rounded-xl flex items-center justify-center gap-2 font-medium font-work hover:bg-red-950/30 transition-colors">
+        <button className="w-full bg-[#2a1a15] text-red-400 py-3 rounded-xl flex items-center justify-center gap-2 font-medium hover:bg-red-950/30 transition-colors">
           <LogOut size={18} />
           Logout
         </button>

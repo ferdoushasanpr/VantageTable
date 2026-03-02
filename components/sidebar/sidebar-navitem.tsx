@@ -19,12 +19,12 @@ export default function NavItem({ icon, label, href }: NavitemProps) {
       <div
         className={`flex items-center gap-4 px-4 py-3 rounded-xl cursor-pointer transition-all ${
           path.startsWith(href)
-            ? "bg-[#f2a922] text-[#120f0a]"
+            ? "bg-primary text-[#120f0a]"
             : "text-stone-500 hover:text-stone-200"
         }`}
       >
         {icon}
-        <span className="font-semibold font-work text-sm">{label}</span>
+        <span className="font-semibold text-sm">{label}</span>
       </div>
     </Link>
   );

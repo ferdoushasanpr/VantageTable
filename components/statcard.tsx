@@ -14,7 +14,7 @@ export default function StatCard({
     <div className="bg-[#1a1610] border border-stone-800/50 p-8 rounded-4xl relative overflow-hidden group">
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-2 h-2 rounded-full bg-[#f2a922]"></div>
+          <div className="w-2 h-2 rounded-full bg-primary"></div>
           <p className="text-stone-500 text-sm font-medium font-work">
             {title}
           </p>

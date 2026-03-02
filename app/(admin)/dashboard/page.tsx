@@ -66,8 +66,8 @@ const DashboardPage = (): React.ReactNode => {
     <main className="flex-1 p-8 overflow-y-auto">
       <header className="flex justify-between items-start mb-10">
         <div>
-          <h2 className="text-3xl font-bold font-work">Dashboard Overview</h2>
-          <p className="text-stone-500 font-work mt-1">
+          <h2 className="text-3xl font-bold">Dashboard Overview</h2>
+          <p className="text-stone-500 mt-1">
             Welcome back, Marco. Here&apos;s what&apos;s happening today.
           </p>
         </div>
@@ -80,7 +80,7 @@ const DashboardPage = (): React.ReactNode => {
             <input
               type="text"
               placeholder="Search orders, guests..."
-              className="bg-[#1a1610] border border-stone-800 font-work rounded-full py-2.5 pl-12 pr-6 w-80 placeholder:font-work focus:outline-none focus:border-[#f2a922]/50 transition-all text-sm"
+              className="bg-[#1a1610] border border-stone-800 rounded-full py-2.5 pl-12 pr-6 w-80 placeholder:font-work focus:outline-none focus:border-[#f2a922]/50 transition-all text-sm"
             />
           </div>
           <button className="p-2.5 bg-[#1a1610] border border-stone-800 rounded-full text-stone-400 hover:text-[#f2a922]">
@@ -101,7 +101,7 @@ const DashboardPage = (): React.ReactNode => {
       <div className="bg-[#1a1610] border border-stone-800/50 rounded-3xl p-6">
         <div className="flex justify-between items-center mb-8">
           <h3 className="text-xl font-bold">Top 10 Recent Reservations</h3>
-          <button className="text-[#f2a922] text-sm font-medium hover:underline">
+          <button className="text-primary text-sm font-medium hover:underline">
             View All Reservations
           </button>
         </div>
@@ -124,7 +124,7 @@ const DashboardPage = (): React.ReactNode => {
               >
                 <td className="py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[#3d3324] text-[#f2a922] flex items-center justify-center text-[10px] font-bold">
+                    <div className="w-8 h-8 rounded-full bg-[#3d3324] text-primary flex items-center justify-center text-[10px] font-bold">
                       {res.name
                         .split(" ")
                         .map((n) => n[0])

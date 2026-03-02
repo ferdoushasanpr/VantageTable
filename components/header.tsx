@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Header(): React.ReactNode {
   return (
     <header className="border-b-[#6B7280] border-b">
-      <nav className="bg-[#12100A] text-white px-16 py-6 flex items-center justify-between font-work">
+      <nav className="bg-dark text-white px-16 py-6 flex items-center justify-between">
         <div className="flex items-center gap-2 cursor-pointer">
           <Image
             src={NavIcon}
@@ -39,11 +39,10 @@ export default function Header(): React.ReactNode {
           </Link>
         </div>
 
-        {/* Action Button */}
         <div>
           <Link
             href="reserve"
-            className="bg-[#F4AF25] hover:bg-[#e69f26] text-black font-bold py-3 px-8 rounded-full transition-all text-sm"
+            className="bg-primary hover:bg-[#e69f26] text-black font-bold py-3 px-8 rounded-full transition-all text-sm"
           >
             Reserve Now
           </Link>

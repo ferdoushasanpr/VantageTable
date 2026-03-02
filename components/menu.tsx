@@ -52,13 +52,13 @@ const Menu = (): React.ReactNode => {
       : menuItems.filter((item) => item.category === activeCategory);
 
   return (
-    <div className="bg-[#0a0a0a] text-white font-sans px-6 py-24">
+    <div className="bg-dark text-white px-6 py-24">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <p className="text-[#F4AF25] uppercase tracking-[0.2em] text-sm font-bold font-work mb-3">
+          <p className="text-primary uppercase tracking-[0.2em] text-sm font-bold mb-3">
             Discover Our Flavors
           </p>
-          <h1 className="text-2xl md:text-4xl font-bold font-work mb-10">
+          <h1 className="text-2xl md:text-4xl font-bold mb-10">
             Culinary Menu
           </h1>
 
@@ -67,9 +67,9 @@ const Menu = (): React.ReactNode => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-8 py-2 font-work rounded-full border transition-all duration-300 ${
+                className={`px-8 py-2 rounded-full border transition-all duration-300 ${
                   activeCategory === cat
-                    ? "bg-[#F4AF25] text-black border-[#F4AF25] font-bold"
+                    ? "bg-primary text-black border-primary font-bold"
                     : "bg-transparent border-gray-800 text-gray-300 hover:border-gray-600"
                 }`}
               >
@@ -83,15 +83,15 @@ const Menu = (): React.ReactNode => {
           {filteredItems.map((item, index) => (
             <div key={index} className="group border-b border-gray-900 pb-8">
               <div className="flex justify-between items-baseline mb-2">
-                <h3 className="text-xl font-bold font-work flex items-center gap-2">
+                <h3 className="text-xl font-bold flex items-center gap-2">
                   {item.name}
-                  <span className="w-2 h-2 rounded-full bg-[#c48e2a]/40 inline-block"></span>
+                  <span className="w-2 h-2 rounded-full bg-primary/40 inline-block"></span>
                 </h3>
-                <span className="text-[#F4AF25] font-bold font-work text-md">
+                <span className="text-primary font-bold text-md">
                   {item.price}
                 </span>
               </div>
-              <p className="text-gray-400 text-sm font-light font-work leading-relaxed">
+              <p className="text-gray-400 text-sm font-light leading-relaxed">
                 {item.description}
               </p>
             </div>

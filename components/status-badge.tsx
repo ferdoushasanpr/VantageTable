@@ -8,8 +8,8 @@ export default function StatusBadge({
   type,
 }: StatusBadgeProps): React.ReactNode {
   const styles: { [key: string]: string } = {
-    Confirmed: "bg-[#F5A623]/10 text-[#F5A623] border-[#F5A623]/20",
-    Pending: "bg-[#8E8370]/10 text-[#8E8370] border-[#8E8370]/20",
+    Confirmed: "bg-primary/10 text-primary border-primary/20",
+    Pending: "bg-light/10 text-light border-light/20",
   };
 
   return (

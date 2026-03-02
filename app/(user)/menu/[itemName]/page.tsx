@@ -21,7 +21,7 @@ const ItemDetailsPage = async ({
 
   return (
     <section className="bg-[#0C0C0C]">
-      <div className="flex flex-col lg:flex-row justify-center p-20 text-white font-work selection:bg-[#F3B340] selection:text-black">
+      <div className="flex flex-col lg:flex-row justify-center p-20 text-white selection:bg-primary selection:text-black">
         <div className="w-lg">
           <img
             src={item.image}
@@ -33,22 +33,22 @@ const ItemDetailsPage = async ({
         <section className="lg:w-2xl flex flex-col justify-center p-8 md:p-16 lg:p-24 bg-[#0C0C0C]">
           <div className="max-w-md mx-auto lg:mx-0">
             <div className="mb-12 border-b border-gray-900 pb-4">
-              <span className="text-[#F3B340] uppercase tracking-[0.4em] text-[10px] font-bold">
+              <span className="text-primary uppercase tracking-[0.4em] text-[10px] font-bold">
                 {item.category}
               </span>
             </div>
 
             <div className="mb-10">
-              <h1 className="text-5xl md:text-6xl font-serif tracking-tight mb-4">
+              <h1 className="text-5xl md:text-6xl tracking-tight mb-4">
                 {item.name}
               </h1>
-              <p className="text-2xl font-serif text-[#F3B340] tracking-wider">
+              <p className="text-2xl text-primary tracking-wider">
                 {item.price}
               </p>
             </div>
 
             <div className="mb-12">
-              <p className="text-xl text-gray-300 font-serif italic leading-relaxed">
+              <p className="text-xl text-gray-300 italic leading-relaxed">
                 &quot;{item.description}&quot;
               </p>
             </div>
