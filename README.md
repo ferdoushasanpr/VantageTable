@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍽️ Gourmet Haven
 
-## Getting Started
+**Gourmet Haven** is a full-stack restaurant management and food ordering platform built with **Next.js** designed to deliver a seamless experience for both customers and administrators.
 
-First, run the development server:
+Users can explore delicious dishes, filter menu items, and reserve tables, while admins can manage reservations and food items efficiently through a secure dashboard.
+
+---
+
+## 🚀 Tech Stack
+
+- **Frontend & Backend:** Next.js
+
+- **Styling:** Tailwind CSS
+
+- **ORM:** Prisma ORM
+
+- **Database:** PostgreSQL
+
+- **Authentication:** Custom Admin Login (JWT / Session-based)
+
+---
+
+## 👥 User Features
+
+### 🏠 Home Page
+
+- 🎞️ Hero section with dynamic photo carousel
+
+- 🍲 Latest food highlights
+
+- 📋 Filterable food menu
+
+- 📅 “Reserve Now” table reservation form
+
+### 📖 Menu Page
+
+- Complete list of available food items
+
+- Category-based filtering
+
+- Responsive design for all devices
+
+---
+
+## 🔐 Admin Features
+
+### 📊 Reservation Management
+
+- View all restaurant reservations
+
+- Update reservation status
+
+- Delete reservations
+
+### 🍕 Food Management
+
+- Add new food items
+
+- Update existing food
+
+- Delete food
+
+- View complete food list
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/ferdoushasanpr/VantageTable.git
+cd VantageTable
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Setup Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+NEXTAUTH_SECRET="your_secret_key"
+```
+
+### 4️⃣ Setup Prisma
+
+```bash
+npx prisma migrate dev
+npx prisma generate
+```
+
+### 5️⃣ Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App will be running at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧱 Database Schema (High-Level)
 
-To learn more about Next.js, take a look at the following resources:
+- **User/Admin**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Food**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Reservation**
 
-## Deploy on Vercel
+Managed using **Prisma ORM** with **PostgreSQL**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork the repo and submit a pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+Developed with ❤️ by Ferdous Hasan
+
+---
