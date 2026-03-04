@@ -31,3 +31,15 @@ model Reservation {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Food {
+  id Int @id @default(autoincrement())
+  name String
+  cat String
+  price Int
+  desc String
+  image String
+  status Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
