@@ -1,5 +1,7 @@
 "use server";
 
+import { redirect } from "next/navigation";
+
 export const reservationInputHandler = async (formData: FormData) => {
   const name = formData.get("name") as string | null;
   const phone = formData.get("phone") as string | null;
@@ -50,4 +52,6 @@ export const reservationInputHandler = async (formData: FormData) => {
 
   const data = await response.json();
   console.log("Reservation successful:", data);
+
+  redirect("/bookings");
 };
