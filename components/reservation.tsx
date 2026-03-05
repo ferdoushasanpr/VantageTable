@@ -1,3 +1,4 @@
+import { reservationInputHandler } from "@/lib/reserve";
 import React from "react";
 
 export default function Reservation(): React.ReactNode {
@@ -13,7 +14,7 @@ export default function Reservation(): React.ReactNode {
             larger than 8, please call us directly.
           </p>
         </div>
-        <form className="space-y-6">
+        <form className="space-y-6" action={reservationInputHandler}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold uppercase tracking-widest text-light">
