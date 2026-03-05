@@ -1,4 +1,4 @@
-import { reservationInputHandler } from "@/lib/reserve";
+import { reservationInputHandler } from "@/actions/reserve";
 import React from "react";
 
 export default function Reservation(): React.ReactNode {
