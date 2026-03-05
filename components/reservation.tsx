@@ -21,6 +21,7 @@ export default function Reservation(): React.ReactNode {
               </label>
               <input
                 type="text"
+                name="name"
                 placeholder="John Doe"
                 className="bg-[#241f1a] border border-[#36302a] text-gray-300 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors placeholder:text-gray-600"
               />
@@ -32,6 +33,7 @@ export default function Reservation(): React.ReactNode {
               </label>
               <input
                 type="tel"
+                name="phone"
                 placeholder="+1 (555) 000-0000"
                 className="bg-[#241f1a] border border-[#36302a] text-gray-300 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors placeholder:text-gray-600"
               />
@@ -42,7 +44,8 @@ export default function Reservation(): React.ReactNode {
                 Date
               </label>
               <input
-                type="text"
+                type="date"
+                name="date"
                 placeholder="mm/dd/yyyy"
                 className="bg-[#241f1a] border border-[#36302a] text-gray-300 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors placeholder:text-gray-600"
               />
@@ -53,10 +56,13 @@ export default function Reservation(): React.ReactNode {
                 <label className="text-xs font-bold uppercase tracking-widest text-light">
                   Time
                 </label>
-                <select className="bg-[#241f1a] border border-[#36302a] text-gray-300 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors appearance-none cursor-pointer">
-                  <option>18:00</option>
-                  <option>19:00</option>
-                  <option>20:00</option>
+                <select
+                  name="time"
+                  className="bg-[#241f1a] border border-[#36302a] text-gray-300 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors appearance-none cursor-pointer"
+                >
+                  <option value="18:00">18:00</option>
+                  <option value="19:00">19:00</option>
+                  <option value="20:00">20:00</option>
                 </select>
               </div>
 
@@ -64,11 +70,14 @@ export default function Reservation(): React.ReactNode {
                 <label className="text-xs font-bold uppercase tracking-widest text-[#CBB790]">
                   Guests
                 </label>
-                <select className="bg-[#241f1a] border border-[#36302a] text-gray-300 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors appearance-none cursor-pointer">
-                  <option>2 Guests</option>
-                  <option>4 Guests</option>
-                  <option>6 Guests</option>
-                  <option>8 Guests</option>
+                <select
+                  name="guests"
+                  className="bg-[#241f1a] border border-[#36302a] text-gray-300 rounded-xl px-4 py-3 outline-none focus:border-amber-500/50 transition-colors appearance-none cursor-pointer"
+                >
+                  <option value="2">2 Guests</option>
+                  <option value="4">4 Guests</option>
+                  <option value="6">6 Guests</option>
+                  <option value="8">8 Guests</option>
                 </select>
               </div>
             </div>
