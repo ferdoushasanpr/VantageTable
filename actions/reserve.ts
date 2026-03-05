@@ -26,11 +26,28 @@ export const reservationInputHandler = async (formData: FormData) => {
   if (!guestsRaw || isNaN(Number(guestsRaw)) || Number(guestsRaw) < 1) {
     throw new Error("Guests is required and must be a number greater than 0.");
   }
-  console.log("Reservation successful:", {
-    name: name.trim(),
-    phone: phone.trim(),
-    date: new Date(date),
-    time: time.trim(),
-    guests: Number(guestsRaw),
-  });
+
+  const response = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name.trim(),
+        phone: phone.trim(),
+        date: new Date(date),
+        time: time.trim(),
+        guests: Number(guestsRaw),
+      }),
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Reservation failed");
+  }
+
+  const data = await response.json();
+  console.log("Reservation successful:", data);
 };
