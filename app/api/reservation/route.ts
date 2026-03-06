@@ -37,3 +37,22 @@ export const POST = async (req: Request) => {
     await prisma.$disconnect();
   }
 };
+
+export const GET = async () => {
+  try {
+    const data = await prisma.reservation.findMany();
+
+    return Response.json(
+      {
+        success: true,
+        message: "Successfully Fetched Reservations",
+        data: data,
+      },
+      { status: 201 },
+    );
+  } catch (error) {
+    console.error("Reservation Error:", error);
+
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+};
