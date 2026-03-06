@@ -10,64 +10,24 @@ import {
 } from "lucide-react";
 import PageButton from "@/components/pagebutton";
 import StatusBadge from "@/components/status-badge";
+import { getAllReservations } from "@/actions/reserve";
 
-const ReservationsPage = (): React.ReactNode => {
-  const reservations = [
-    {
-      id: 1,
-      initials: "JD",
-      name: "John Doe",
-      phone: "(555) 123-4567",
-      date: "Oct 24, 2023",
-      time: "19:00",
-      guests: 4,
-      status: "Confirmed",
-    },
-    {
-      id: 2,
-      initials: "JS",
-      name: "Jane Smith",
-      phone: "(555) 987-6543",
-      date: "Oct 24, 2023",
-      time: "20:30",
-      guests: 2,
-      status: "Pending",
-    },
-    {
-      id: 3,
-      initials: "RB",
-      name: "Robert Brown",
-      phone: "(555) 456-7890",
-      date: "Oct 25, 2023",
-      time: "18:00",
-      guests: 6,
-      status: "Confirmed",
-    },
-    {
-      id: 4,
-      initials: "ED",
-      name: "Emily Davis",
-      phone: "(555) 222-3333",
-      date: "Oct 25, 2023",
-      time: "19:15",
-      guests: 2,
-      status: "Pending",
-    },
-    {
-      id: 5,
-      initials: "MW",
-      name: "Michael Wilson",
-      phone: "(555) 444-5555",
-      date: "Oct 26, 2023",
-      time: "21:00",
-      guests: 3,
-      status: "Confirmed",
-    },
-  ];
+type Reservation = {
+  id: number;
+  name: string;
+  date: Date;
+  time: string;
+  guests: number;
+  phone: string;
+  status: string;
+};
+
+const ReservationsPage = async (): Promise<React.ReactNode> => {
+  const data = await getAllReservations();
+  const reservations = data.data;
 
   return (
     <main className="flex-1 p-10 flex flex-col">
-      {/* Header Section */}
       <header className="flex justify-between items-start mb-8">
         <div>
           <h2 className="text-3xl font-bold text-white mb-1">Reservations</h2>
@@ -75,7 +35,6 @@ const ReservationsPage = (): React.ReactNode => {
         </div>
       </header>
 
-      {/* Filters and Tabs */}
       <div className="flex items-center justify-end mb-8">
         <div className="flex gap-3">
           <div className="relative">
@@ -112,7 +71,7 @@ const ReservationsPage = (): React.ReactNode => {
             </tr>
           </thead>
           <tbody className="divide-y divide-[#2A2419]">
-            {reservations.map((res) => (
+            {reservations.map((res: Reservation) => (
               <tr
                 key={res.id}
                 className="hover:bg-[#231F16] transition-colors group"
@@ -120,7 +79,7 @@ const ReservationsPage = (): React.ReactNode => {
                 <td className="px-8 py-4">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-[#2A2419] flex items-center justify-center text-primary text-xs font-bold border border-[#332D21]">
-                      {res.initials}
+                      {/* {res.initials} */} JD
                     </div>
                     <span className="font-bold text-white text-sm">
                       {res.name}
@@ -128,7 +87,9 @@ const ReservationsPage = (): React.ReactNode => {
                   </div>
                 </td>
                 <td className="px-8 py-4 text-sm text-light">{res.phone}</td>
-                <td className="px-8 py-4 text-sm text-light">{res.date}</td>
+                <td className="px-8 py-4 text-sm text-light">
+                  {new Date(res.date).toLocaleString()}
+                </td>
                 <td className="px-8 py-4 text-sm text-light">{res.time}</td>
                 <td className="px-8 py-4">
                   <div className="flex items-center gap-2 text-sm text-light">
