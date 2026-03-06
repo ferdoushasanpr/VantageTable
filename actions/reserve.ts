@@ -55,3 +55,18 @@ export const reservationInputHandler = async (formData: FormData) => {
 
   redirect("/bookings");
 };
+
+export const getAllReservations = async () => {
+  const data = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  const reservations = await data.json();
+
+  return reservations;
+};
