@@ -11,6 +11,7 @@ import {
 import PageButton from "@/components/pagebutton";
 import StatusBadge from "@/components/status-badge";
 import { getAllReservations } from "@/actions/reserve";
+import { getNameInitial } from "@/utilities/nameInitial";
 
 type Reservation = {
   id: number;
@@ -79,7 +80,7 @@ const ReservationsPage = async (): Promise<React.ReactNode> => {
                 <td className="px-8 py-4">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-[#2A2419] flex items-center justify-center text-primary text-xs font-bold border border-[#332D21]">
-                      {/* {res.initials} */} JD
+                      {getNameInitial(res.name)}
                     </div>
                     <span className="font-bold text-white text-sm">
                       {res.name}
