@@ -1,5 +1,6 @@
 import { reservationInputHandler } from "@/actions/reserve";
 import React from "react";
+import SubmitButton from "./submit-button";
 
 export default function Reservation(): React.ReactNode {
   return (
@@ -84,11 +85,7 @@ export default function Reservation(): React.ReactNode {
             </div>
           </div>
 
-          <input
-            type="submit"
-            className="w-full mt-4 bg-primary hover:bg-[#e6a22b] text-[#1a1612] font-bold py-4 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(250,177,49,0.3)] active:scale-[0.98]"
-            value="Confirm Reservation"
-          />
+          <SubmitButton />
         </form>
       </div>
     </section>
