@@ -1,46 +1,20 @@
 import React from "react";
 import { Calendar, Clock, Users, Phone, User } from "lucide-react";
+import { getAllReservations } from "@/actions/reserve";
 
-const reservations = [
-  {
-    id: 1,
-    name: "Alexander Wright",
-    date: "Oct 24, 2024",
-    time: "19:30",
-    guests: 2,
-    phone: "+44 20 7946 0012",
-    status: "Confirmed",
-  },
-  {
-    id: 2,
-    name: "Elena Rodriguez",
-    date: "Oct 24, 2024",
-    time: "20:00",
-    guests: 4,
-    phone: "+44 20 7946 0558",
-    status: "Confirmed",
-  },
-  {
-    id: 3,
-    name: "James Sterling",
-    date: "Oct 25, 2024",
-    time: "18:45",
-    guests: 6,
-    phone: "+44 20 7946 0119",
-    status: "Pending",
-  },
-  {
-    id: 4,
-    name: "Sophia Chen",
-    date: "Oct 25, 2024",
-    time: "21:15",
-    guests: 2,
-    phone: "+44 20 7946 0882",
-    status: "Confirmed",
-  },
-];
+type Reservation = {
+  id: number;
+  name: string;
+  date: Date;
+  time: string;
+  guests: number;
+  phone: string;
+  status: string;
+};
 
-const ReservationListPage = (): React.ReactNode => {
+const ReservationListPage = async (): Promise<React.ReactNode> => {
+  const data = await getAllReservations();
+  const reservations = data.data;
   return (
     <div className="min-h-screen bg-dark-light text-white font-work p-6 md:p-12">
       <header className="max-w-6xl mx-auto mb-16">
@@ -50,7 +24,7 @@ const ReservationListPage = (): React.ReactNode => {
       </header>
 
       <main className="max-w-4xl mx-auto grid grid-cols-1 gap-6">
-        {reservations.map((res) => (
+        {reservations.map((res: Reservation) => (
           <div
             key={res.id}
             className="group relative bg-dark border border-gray-800 p-8 rounded-sm hover:border-[#F3B340]/40 transition-all duration-500 hover:-translate-y-1"
@@ -80,7 +54,7 @@ const ReservationListPage = (): React.ReactNode => {
               <div className="flex items-center gap-4 text-gray-400">
                 <Calendar size={16} className="text-primary" />
                 <span className="text-sm font-light tracking-wide">
-                  {res.date}
+                  {new Date(res.date).toLocaleString()}
                 </span>
               </div>
 
