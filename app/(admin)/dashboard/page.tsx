@@ -1,66 +1,21 @@
 import React from "react";
 import { Search, Bell } from "lucide-react";
 import StatCard from "@/components/statcard";
+import { getLatestReservations } from "@/actions/reserve";
 
-const DashboardPage = (): React.ReactNode => {
-  const reservations = [
-    {
-      name: "John Doe",
-      date: "Oct 24, 2023",
-      time: "7:00 PM",
-      guests: 4,
-      status: "CONFIRMED",
-      color: "text-emerald-500",
-    },
-    {
-      name: "Jane Smith",
-      date: "Oct 24, 2023",
-      time: "7:30 PM",
-      guests: 2,
-      status: "CONFIRMED",
-      color: "text-emerald-500",
-    },
-    {
-      name: "Michael Brown",
-      date: "Oct 24, 2023",
-      time: "8:00 PM",
-      guests: 6,
-      status: "ARRIVED",
-      color: "text-amber-500",
-    },
-    {
-      name: "Emily Davis",
-      date: "Oct 25, 2023",
-      time: "6:30 PM",
-      guests: 3,
-      status: "CONFIRMED",
-      color: "text-emerald-500",
-    },
-    {
-      name: "Chris Wilson",
-      date: "Oct 25, 2023",
-      time: "7:00 PM",
-      guests: 2,
-      status: "PENDING",
-      color: "text-gray-400",
-    },
-    {
-      name: "Sarah Miller",
-      date: "Oct 25, 2023",
-      time: "8:30 PM",
-      guests: 5,
-      status: "CONFIRMED",
-      color: "text-emerald-500",
-    },
-    {
-      name: "David Taylor",
-      date: "Oct 26, 2023",
-      time: "6:00 PM",
-      guests: 4,
-      status: "CANCELLED",
-      color: "text-red-500",
-    },
-  ];
+type Reservation = {
+  id: number;
+  name: string;
+  date: Date;
+  time: string;
+  guests: number;
+  phone: string;
+  status: string;
+};
+
+const DashboardPage = async (): Promise<React.ReactNode> => {
+  const data = await getLatestReservations();
+  const reservations = data.data;
 
   return (
     <main className="flex-1 p-8 overflow-y-auto">
@@ -89,7 +44,6 @@ const DashboardPage = (): React.ReactNode => {
         </div>
       </header>
 
-      {/* Stats Grid */}
       <div className="grid grid-cols-4 gap-6 mb-10">
         <StatCard title="Total Food Items" value="42" />
         <StatCard title="Total Reservations" value="128" />
@@ -97,10 +51,9 @@ const DashboardPage = (): React.ReactNode => {
         <StatCard title="Pending Requests" value="07" />
       </div>
 
-      {/* Reservations Table */}
       <div className="bg-[#1a1610] border border-stone-800/50 rounded-3xl p-6">
         <div className="flex justify-between items-center mb-8">
-          <h3 className="text-xl font-bold">Top 10 Recent Reservations</h3>
+          <h3 className="text-xl font-bold">Top 6 Recent Reservations</h3>
           <button className="text-primary text-sm font-medium hover:underline">
             View All Reservations
           </button>
@@ -117,9 +70,9 @@ const DashboardPage = (): React.ReactNode => {
             </tr>
           </thead>
           <tbody className="divide-y divide-stone-800/50">
-            {reservations.map((res, idx) => (
+            {reservations.map((res: Reservation) => (
               <tr
-                key={idx}
+                key={res.id}
                 className="group hover:bg-stone-800/20 transition-colors"
               >
                 <td className="py-4">
@@ -133,7 +86,9 @@ const DashboardPage = (): React.ReactNode => {
                     <span className="font-semibold text-sm">{res.name}</span>
                   </div>
                 </td>
-                <td className="py-4 text-sm text-stone-400">{res.date}</td>
+                <td className="py-4 text-sm text-stone-400">
+                  {new Date(res.date).toLocaleString()}
+                </td>
                 <td className="py-4 text-sm text-stone-400">{res.time}</td>
                 <td className="py-4 text-sm text-stone-400">
                   <span className="bg-[#241e15] px-2 py-1 rounded-md">
@@ -141,7 +96,7 @@ const DashboardPage = (): React.ReactNode => {
                   </span>
                 </td>
                 <td
-                  className={`py-4 text-right text-[11px] font-bold tracking-tighter ${res.color}`}
+                  className={`py-4 text-right text-[11px] font-bold tracking-tighter`}
                 >
                   {res.status}
                 </td>
