@@ -85,3 +85,18 @@ export const getLatestReservations = async () => {
 
   return reservations;
 };
+
+export const getCountReservations = async () => {
+  const data = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation/count`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  const reservations = await data.json();
+
+  return reservations;
+};
