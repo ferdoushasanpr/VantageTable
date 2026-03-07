@@ -12,16 +12,7 @@ import PageButton from "@/components/pagebutton";
 import StatusBadge from "@/components/status-badge";
 import { getAllReservations } from "@/actions/reserve";
 import { getNameInitial } from "@/utilities/nameInitial";
-
-type Reservation = {
-  id: number;
-  name: string;
-  date: Date;
-  time: string;
-  guests: number;
-  phone: string;
-  status: string;
-};
+import { Reservation } from "@/types/reservation";
 
 const ReservationsPage = async (): Promise<React.ReactNode> => {
   const data = await getAllReservations();

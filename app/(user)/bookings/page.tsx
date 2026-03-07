@@ -1,16 +1,7 @@
 import React from "react";
 import { Calendar, Clock, Users, Phone, User } from "lucide-react";
 import { getAllReservations } from "@/actions/reserve";
-
-type Reservation = {
-  id: number;
-  name: string;
-  date: Date;
-  time: string;
-  guests: number;
-  phone: string;
-  status: string;
-};
+import { Reservation } from "@/types/reservation";
 
 const ReservationListPage = async (): Promise<React.ReactNode> => {
   const data = await getAllReservations();

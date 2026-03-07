@@ -3,16 +3,7 @@ import { Search, Bell } from "lucide-react";
 import StatCard from "@/components/statcard";
 import { getCountReservations, getLatestReservations } from "@/actions/reserve";
 import Link from "next/link";
-
-type Reservation = {
-  id: number;
-  name: string;
-  date: Date;
-  time: string;
-  guests: number;
-  phone: string;
-  status: string;
-};
+import { Reservation } from "@/types/reservation";
 
 const DashboardPage = async (): Promise<React.ReactNode> => {
   const data = await getLatestReservations();
