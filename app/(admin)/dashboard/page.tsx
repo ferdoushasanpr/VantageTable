@@ -2,6 +2,7 @@ import React from "react";
 import { Search, Bell } from "lucide-react";
 import StatCard from "@/components/statcard";
 import { getLatestReservations } from "@/actions/reserve";
+import Link from "next/link";
 
 type Reservation = {
   id: number;
@@ -54,9 +55,12 @@ const DashboardPage = async (): Promise<React.ReactNode> => {
       <div className="bg-[#1a1610] border border-stone-800/50 rounded-3xl p-6">
         <div className="flex justify-between items-center mb-8">
           <h3 className="text-xl font-bold">Top 6 Recent Reservations</h3>
-          <button className="text-primary text-sm font-medium hover:underline">
+          <Link
+            href="/reservations"
+            className="text-primary text-sm font-medium hover:underline"
+          >
             View All Reservations
-          </button>
+          </Link>
         </div>
 
         <table className="w-full text-left">
