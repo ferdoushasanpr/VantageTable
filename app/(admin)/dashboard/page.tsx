@@ -1,7 +1,7 @@
 import React from "react";
 import { Search, Bell } from "lucide-react";
 import StatCard from "@/components/statcard";
-import { getLatestReservations } from "@/actions/reserve";
+import { getCountReservations, getLatestReservations } from "@/actions/reserve";
 import Link from "next/link";
 
 type Reservation = {
@@ -16,6 +16,8 @@ type Reservation = {
 
 const DashboardPage = async (): Promise<React.ReactNode> => {
   const data = await getLatestReservations();
+  const totalReservationsData = await getCountReservations();
+  const totalReservations = totalReservationsData.total;
   const reservations = data.data;
 
   return (
@@ -47,7 +49,7 @@ const DashboardPage = async (): Promise<React.ReactNode> => {
 
       <div className="grid grid-cols-4 gap-6 mb-10">
         <StatCard title="Total Food Items" value="42" />
-        <StatCard title="Total Reservations" value="128" />
+        <StatCard title="Total Reservations" value={totalReservations} />
         <StatCard title="Total Guests" value="48" />
         <StatCard title="Pending Requests" value="07" />
       </div>
