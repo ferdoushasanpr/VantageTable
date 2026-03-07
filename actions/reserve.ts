@@ -70,3 +70,18 @@ export const getAllReservations = async () => {
 
   return reservations;
 };
+
+export const getLatestReservations = async () => {
+  const data = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation/latest`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  const reservations = await data.json();
+
+  return reservations;
+};
