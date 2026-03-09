@@ -81,3 +81,19 @@ export const menuSubmitHandler = async (formData: FormData) => {
   console.log(data);
   redirect("/menulist");
 };
+
+export const fetchMenu = async () => {
+  const data = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/menu`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+
+  const menu = await data.json();
+
+  return menu;
+};
