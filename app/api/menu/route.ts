@@ -2,9 +2,9 @@ import { prisma } from "@/lib/prisma";
 
 export const POST = async (req: Request) => {
   try {
-    const { name, cat, price, desc, image, status } = await req.json();
+    const { name, cat, price, desc, slug, image, status } = await req.json();
 
-    if (!name || !cat || !price || !desc || !image || !status) {
+    if (!name || !cat || !price || !desc || !slug || !image || !status) {
       return Response.json(
         { error: "Missing required fields" },
         { status: 400 },
@@ -17,6 +17,7 @@ export const POST = async (req: Request) => {
         cat,
         price,
         desc,
+        slug,
         image,
         status,
       },
