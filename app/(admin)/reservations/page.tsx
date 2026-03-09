@@ -49,7 +49,7 @@ const ReservationsPage = async (): Promise<React.ReactNode> => {
         </div>
       </div>
 
-      <div className="bg-[#1D1912] rounded-3xl border border-[#2A2419] overflow-hidden shadow-2xl mb-8">
+      <div className="bg-[#1D1912] rounded-3xl border border-[#2A2419] overflow-hidden flex flex-col flex-1 justify-between shadow-2xl mb-8">
         <table className="w-full text-left">
           <thead>
             <tr className="border-b border-[#2A2419] text-white text-[11px] uppercase tracking-widest font-bold">

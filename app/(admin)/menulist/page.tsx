@@ -9,70 +9,22 @@ import {
 } from "lucide-react";
 import FilterTab from "@/components/filtertab";
 import PageButton from "@/components/pagebutton";
+import { fetchMenu } from "@/actions/menu";
 
-const MenulistPage = (): React.ReactNode => {
-  const menuItems = [
-    {
-      id: 1,
-      name: "Classic Beef Burger",
-      desc: "Grass-fed beef, cheddar, brioche",
-      cat: "Mains",
-      price: "14.99",
-      status: "In Stock",
-      statusColor: "text-green-500",
-      img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Gourmet Caesar Salad",
-      desc: "Romaine, parmesan, croutons",
-      cat: "Appetizers",
-      price: "9.50",
-      status: "In Stock",
-      statusColor: "text-green-500",
-      img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&h=100&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Chocolate Lava Cake",
-      desc: "Rich chocolate with vanilla dip",
-      cat: "Desserts",
-      price: "7.25",
-      status: "Low Stock",
-      statusColor: "text-[#F5A623]",
-      img: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=100&h=100&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Tropical Mango Smoothie",
-      desc: "Fresh mango, coconut milk",
-      cat: "Drinks",
-      price: "5.50",
-      status: "Out of Stock",
-      statusColor: "text-red-500",
-      img: "https://images.unsplash.com/photo-1623065422902-30a2ad44924b?w=100&h=100&fit=crop",
-    },
-    {
-      id: 1,
-      name: "Classic Beef Burger",
-      desc: "Grass-fed beef, cheddar, brioche",
-      cat: "Mains",
-      price: "14.99",
-      status: "In Stock",
-      statusColor: "text-green-500",
-      img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Gourmet Caesar Salad",
-      desc: "Romaine, parmesan, croutons",
-      cat: "Appetizers",
-      price: "9.50",
-      status: "In Stock",
-      statusColor: "text-green-500",
-      img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&h=100&fit=crop",
-    },
-  ];
+type Menuitems = {
+  id: number;
+  name: string;
+  desc: string;
+  cat: string;
+  price: number;
+  slug: string;
+  image: string;
+  status: boolean;
+};
+
+const MenulistPage = async (): Promise<React.ReactNode> => {
+  const data = await fetchMenu();
+  const menuItems = data.data;
 
   return (
     <main className="flex-1 p-10 flex flex-col">
@@ -112,7 +64,7 @@ const MenulistPage = (): React.ReactNode => {
         <FilterTab label="Specialties" />
       </div>
 
-      <div className="bg-[#1D1912] rounded-3xl border border-[#2A2419] overflow-hidden flex-1 shadow-2xl">
+      <div className="bg-[#1D1912] rounded-3xl border border-[#2A2419] overflow-hidden flex flex-col flex-1 justify-between shadow-2xl">
         <table className="w-full text-left">
           <thead>
             <tr className="border-b border-[#2A2419] text-light text-[11px] uppercase tracking-widest font-bold">
@@ -125,14 +77,14 @@ const MenulistPage = (): React.ReactNode => {
             </tr>
           </thead>
           <tbody className="divide-y divide-[#2A2419]">
-            {menuItems.map((item) => (
+            {menuItems.map((item: Menuitems) => (
               <tr
                 key={item.id}
                 className="hover:bg-[#231F16] transition-colors group"
               >
                 <td className="px-8 py-4">
                   <img
-                    src={item.img}
+                    src={item.image}
                     alt={item.name}
                     className="w-14 h-14 rounded-2xl object-cover border border-[#2A2419]"
                   />
@@ -148,12 +100,12 @@ const MenulistPage = (): React.ReactNode => {
                 <td className="px-8 py-4">
                   <div className="flex items-center gap-2">
                     <div
-                      className={`w-2 h-2 rounded-full ${item.statusColor.replace("text-", "bg-")}`}
+                      className={`w-2 h-2 rounded-full ${item.status ? "bg-green-500" : "bg-red-500"}`}
                     />
                     <span
-                      className={`text-xs font-semibold ${item.statusColor}`}
+                      className={`text-xs font-semibold ${item.status ? "text-green-500" : "text-red-500"}`}
                     >
-                      {item.status}
+                      {item.status ? "In Stock" : "Out of Stock"}
                     </span>
                   </div>
                 </td>
