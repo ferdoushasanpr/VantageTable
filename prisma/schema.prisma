@@ -38,6 +38,7 @@ model Food {
   cat String
   price Int
   desc String
+  slug String
   image String
   status Boolean
   createdAt DateTime @default(now())
