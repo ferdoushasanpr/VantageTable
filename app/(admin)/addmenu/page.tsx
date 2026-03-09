@@ -1,23 +1,12 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import {
-  PlusCircle,
-  Upload,
-  Info,
-  Settings,
-  Save,
-  Lightbulb,
-} from "lucide-react";
+import React, { useState } from "react";
+import { Info, Settings, Save, Lightbulb } from "lucide-react";
 import { menuSubmitHandler } from "@/actions/menu";
+import ImagePicker from "@/components/image-picker";
 
 const AddMenuPage = (): React.ReactNode => {
   const [isAvailable, setIsAvailable] = useState(true);
-  const imageReference = useRef<HTMLInputElement>(null);
-
-  const imageInputHandler = () => {
-    imageReference.current?.click();
-  };
 
   return (
     <main className="flex-1 p-10 overflow-y-auto">
@@ -124,50 +113,7 @@ const AddMenuPage = (): React.ReactNode => {
           </div>
 
           <div className="col-span-4 space-y-6">
-            <section className="bg-[#1D1912] p-8 rounded-3xl border border-[#2A2419]">
-              <div className="flex items-center gap-2 mb-6">
-                <Upload size={20} className="text-primary" />
-                <h3 className="text-xl font-semibold">Food Media</h3>
-              </div>
-
-              <div
-                className="border-2 border-dashed border-[#332D21] rounded-2xl p-10 flex flex-col items-center justify-center text-center cursor-pointer hover:border-[#F5A623] transition-colors mb-6"
-                onClick={imageInputHandler}
-              >
-                <div className="text-primary mb-4">
-                  <Upload size={48} strokeWidth={1} />
-                </div>
-                <p className="font-bold text-white mb-1">
-                  Click to upload image
-                </p>
-                <p className="text-[10px] text-light uppercase">
-                  PNG, JPG or WEBP (Max. 5MB)
-                </p>
-              </div>
-
-              <input
-                type="file"
-                name="image"
-                ref={imageReference}
-                className="hidden"
-              />
-
-              <div className="flex gap-3">
-                <img
-                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&h=100&fit=crop"
-                  className="w-14 h-14 rounded-xl object-cover border-2 border-[#F5A623]"
-                  alt="prev"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1567620905732-2d1ec7bb7445?w=100&h=100&fit=crop"
-                  className="w-14 h-14 rounded-xl object-cover opacity-50"
-                  alt="prev"
-                />
-                <div className="w-14 h-14 rounded-xl border-2 border-dashed border-[#332D21] flex items-center justify-center text-light hover:text-primary cursor-pointer">
-                  <PlusCircle size={20} />
-                </div>
-              </div>
-            </section>
+            <ImagePicker />
 
             <button
               type="submit"
