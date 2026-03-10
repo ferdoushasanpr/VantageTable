@@ -42,9 +42,7 @@ const MenuPage = async (): Promise<React.ReactNode> => {
                   key={item.id}
                   className="group border border-gray-800 p-4 rounded-sm hover:border-[#F3B340]/30 transition-colors"
                 >
-                  <Link
-                    href={`/menu/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  >
+                  <Link href={`/menu/${item.slug}`}>
                     <div className="flex gap-2">
                       <div className="w-24 h-24 -ml-10 rounded-sm overflow-hidden shrink-0 relative">
                         <Image

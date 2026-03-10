@@ -3,11 +3,11 @@ import React from "react";
 const ItemDetailsPage = async ({
   params,
 }: {
-  params: { itemName: string };
+  params: { slug: string };
 }): Promise<React.ReactNode> => {
-  const { itemName } = await params;
+  const { slug } = await params;
 
-  console.log("Received itemName:", itemName);
+  console.log("Received slug:", slug);
 
   const item = {
     name: "Wagyu Steak",

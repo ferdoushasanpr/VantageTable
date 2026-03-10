@@ -97,3 +97,19 @@ export const fetchMenu = async () => {
 
   return menu;
 };
+
+export const fetchMenuBySlug = async (slug: string) => {
+  const data = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/menu/${slug}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+
+  const menu = await data.json();
+
+  return menu;
+};
