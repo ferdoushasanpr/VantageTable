@@ -10,6 +10,8 @@ import {
 import FilterTab from "@/components/filtertab";
 import PageButton from "@/components/pagebutton";
 import { fetchMenu } from "@/actions/menu";
+import Image from "next/image";
+import Link from "next/link";
 
 type Menuitems = {
   id: number;
@@ -48,10 +50,13 @@ const MenulistPage = async (): Promise<React.ReactNode> => {
               className="bg-[#1D1912] border border-[#2A2419] rounded-xl py-2.5 pl-12 pr-4 w-72 text-sm focus:outline-none focus:border-[#F5A623] transition-colors"
             />
           </div>
-          <button className="bg-primary text-black px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-[#d98f1d] transition-all">
+          <Link
+            href="/addmenu"
+            className="bg-primary text-black px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-[#d98f1d] transition-all"
+          >
             <Plus size={18} />
             Add New Item
-          </button>
+          </Link>
         </div>
       </header>
 
@@ -77,50 +82,53 @@ const MenulistPage = async (): Promise<React.ReactNode> => {
             </tr>
           </thead>
           <tbody className="divide-y divide-[#2A2419]">
-            {menuItems.map((item: Menuitems) => (
-              <tr
-                key={item.id}
-                className="hover:bg-[#231F16] transition-colors group"
-              >
-                <td className="px-8 py-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-14 h-14 rounded-2xl object-cover border border-[#2A2419]"
-                  />
-                </td>
-                <td className="px-8 py-4">
-                  <p className="font-bold text-white text-sm">{item.name}</p>
-                  <p className="text-xs text-light">{item.desc}</p>
-                </td>
-                <td className="px-8 py-4 text-sm text-light">{item.cat}</td>
-                <td className="px-8 py-4 font-bold text-primary">
-                  ${item.price}
-                </td>
-                <td className="px-8 py-4">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-2 h-2 rounded-full ${item.status ? "bg-green-500" : "bg-red-500"}`}
+            {menuItems &&
+              menuItems.map((item: Menuitems) => (
+                <tr
+                  key={item.id}
+                  className="hover:bg-[#231F16] transition-colors group"
+                >
+                  <td className="px-8 py-4">
+                    <Image
+                      src={item.image}
+                      width={80}
+                      height={80}
+                      alt={item.name}
+                      className="w-14 h-14 rounded-2xl object-cover border border-[#2A2419]"
                     />
-                    <span
-                      className={`text-xs font-semibold ${item.status ? "text-green-500" : "text-red-500"}`}
-                    >
-                      {item.status ? "In Stock" : "Out of Stock"}
-                    </span>
-                  </div>
-                </td>
-                <td className="px-8 py-4">
-                  <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-primary hover:border-primary transition-all">
-                      <Edit2 size={16} />
-                    </button>
-                    <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-red-500 hover:border-red-500 transition-all">
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td className="px-8 py-4">
+                    <p className="font-bold text-white text-sm">{item.name}</p>
+                    <p className="text-xs text-light">{item.desc}</p>
+                  </td>
+                  <td className="px-8 py-4 text-sm text-light">{item.cat}</td>
+                  <td className="px-8 py-4 font-bold text-primary">
+                    ${item.price}
+                  </td>
+                  <td className="px-8 py-4">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-2 h-2 rounded-full ${item.status ? "bg-green-500" : "bg-red-500"}`}
+                      />
+                      <span
+                        className={`text-xs font-semibold ${item.status ? "text-green-500" : "text-red-500"}`}
+                      >
+                        {item.status ? "In Stock" : "Out of Stock"}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-8 py-4">
+                    <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-primary hover:border-primary transition-all">
+                        <Edit2 size={16} />
+                      </button>
+                      <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-red-500 hover:border-red-500 transition-all">
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
 
