@@ -1,59 +1,18 @@
+import { fetchMenu } from "@/actions/menu";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const menuData = {
-  Starters: [
-    {
-      name: "Burrata di Bufala",
-      price: "$22",
-      description: "Heirloom tomatoes, balsamic glaze, basil pesto pearls",
-      img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop",
-    },
-    {
-      name: "Wild Mushroom Risotto",
-      price: "$34",
-      description: "Porcini, chanterelles, arborio rice, 24-month parmesan",
-      img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&h=100&fit=crop",
-    },
-  ],
-  "Main Course": [
-    {
-      name: "Lobster Thermidor",
-      price: "$58",
-      description: "Atlantic lobster, cognac cream, gruyère crust",
-      img: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=100&h=100&fit=crop",
-    },
-    {
-      name: "Herb Crusted Lamb",
-      price: "$52",
-      description: "New Zealand rack, pea purée, mint jus, fondant potato",
-      img: "https://images.unsplash.com/photo-1623065422902-30a2ad44924b?w=100&h=100&fit=crop",
-    },
-    {
-      name: "Wagyu Steak",
-      price: "$120",
-      description:
-        "A5 Miyazaki Wagyu, silk truffle mash, vintage red wine reduction",
-      img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop",
-    },
-  ],
-  Desserts: [
-    {
-      name: "Dark Chocolate Soufflé",
-      price: "$18",
-      description: "70% Valrhona, Madagascar vanilla gelato",
-      img: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=100&h=100&fit=crop",
-    },
-    {
-      name: "Crème Brûlée",
-      price: "$16",
-      description: "Tahitian vanilla, caramelized sugar, forest berries",
-      img: "https://images.unsplash.com/photo-1623065422902-30a2ad44924b?w=100&h=100&fit=crop",
-    },
-  ],
-};
+const categories = ["Main Course", "Appetizers", "Desserts"];
 
-const MenuPage = (): React.ReactNode => {
+const MenuPage = async (): Promise<React.ReactNode> => {
+  const data = await fetchMenu();
+  const menuItems = data.data;
+
+  const filterMenu = (cat: string) => {
+    return menuItems.filter((item) => item.cat == cat);
+  };
+
   return (
     <div className="min-h-screen bg-[#0C0C0C] text-white selection:bg-primary selection:text-black">
       <header className="py-24 text-center">
@@ -67,7 +26,7 @@ const MenuPage = (): React.ReactNode => {
       </header>
 
       <main className="max-w-6xl mx-auto px-8 pb-32">
-        {Object.entries(menuData).map(([category, items]) => (
+        {categories.map((category) => (
           <section key={category} className="mb-20 last:mb-0">
             <div className="flex items-center gap-6 mb-12">
               <h2 className="text-primary text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap">
@@ -77,17 +36,22 @@ const MenuPage = (): React.ReactNode => {
             </div>
 
             <div className="pl-8 grid md:grid-cols-2 gap-x-20 gap-y-12">
-              {items.map((item, index) => (
+              {filterMenu(category).map((item) => (
                 <div
-                  key={index}
+                  key={item.id}
                   className="group border border-gray-800 p-4 rounded-sm hover:border-[#F3B340]/30 transition-colors"
                 >
                   <Link
                     href={`/menu/${item.name.toLowerCase().replace(/\s+/g, "-")}`}
                   >
                     <div className="flex gap-2">
-                      <div className="w-24 h-24 -ml-10 rounded-sm overflow-hidden shrink-0">
-                        <img src={item.img} alt={item.name} />
+                      <div className="w-24 h-24 -ml-10 rounded-sm overflow-hidden shrink-0 relative">
+                        <Image
+                          src={item.image}
+                          fill
+                          className="object-cover"
+                          alt={item.name}
+                        />
                       </div>
                       <div>
                         <div className="flex justify-between items-baseline mb-3 border-b border-dashed border-gray-800 pb-1 group-hover:border-[#F3B340]/30 transition-colors">
@@ -95,11 +59,11 @@ const MenuPage = (): React.ReactNode => {
                             {item.name}
                           </h3>
                           <span className="text-primary font-semibold tracking-tighter">
-                            {item.price}
+                            ${item.price}
                           </span>
                         </div>
                         <p className="text-gray-500 text-sm leading-relaxed italic">
-                          {item.description}
+                          {item.desc}
                         </p>
                       </div>
                     </div>
