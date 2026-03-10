@@ -1,4 +1,5 @@
 import { fetchMenu } from "@/actions/menu";
+import { Menuitem } from "@/types/menu";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -10,7 +11,7 @@ const MenuPage = async (): Promise<React.ReactNode> => {
   const menuItems = data.data;
 
   const filterMenu = (cat: string) => {
-    return menuItems.filter((item) => item.cat == cat);
+    return menuItems.filter((item: Menuitem) => item.cat == cat);
   };
 
   return (
@@ -36,7 +37,7 @@ const MenuPage = async (): Promise<React.ReactNode> => {
             </div>
 
             <div className="pl-8 grid md:grid-cols-2 gap-x-20 gap-y-12">
-              {filterMenu(category).map((item) => (
+              {filterMenu(category).map((item: Menuitem) => (
                 <div
                   key={item.id}
                   className="group border border-gray-800 p-4 rounded-sm hover:border-[#F3B340]/30 transition-colors"

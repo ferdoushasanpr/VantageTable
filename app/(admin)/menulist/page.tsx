@@ -12,17 +12,7 @@ import PageButton from "@/components/pagebutton";
 import { fetchMenu } from "@/actions/menu";
 import Image from "next/image";
 import Link from "next/link";
-
-type Menuitems = {
-  id: number;
-  name: string;
-  desc: string;
-  cat: string;
-  price: number;
-  slug: string;
-  image: string;
-  status: boolean;
-};
+import { Menuitem } from "@/types/menu";
 
 const MenulistPage = async (): Promise<React.ReactNode> => {
   const data = await fetchMenu();
@@ -83,7 +73,7 @@ const MenulistPage = async (): Promise<React.ReactNode> => {
           </thead>
           <tbody className="divide-y divide-[#2A2419]">
             {menuItems &&
-              menuItems.map((item: Menuitems) => (
+              menuItems.map((item: Menuitem) => (
                 <tr
                   key={item.id}
                   className="hover:bg-[#231F16] transition-colors group"
