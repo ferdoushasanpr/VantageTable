@@ -4,15 +4,16 @@ import {
   Search,
   Filter,
   ChevronDown,
-  Edit2,
   ChevronLeft,
   ChevronRight,
+  Trash2,
 } from "lucide-react";
 import PageButton from "@/components/pagebutton";
 import StatusBadge from "@/components/status-badge";
 import { getAllReservations } from "@/actions/reserve";
 import { getNameInitial } from "@/utilities/nameInitial";
 import { Reservation } from "@/types/reservation";
+import EditButton from "@/components/buttons/edit-button";
 
 const ReservationsPage = async (): Promise<React.ReactNode> => {
   const data = await getAllReservations();
@@ -92,9 +93,12 @@ const ReservationsPage = async (): Promise<React.ReactNode> => {
                   <StatusBadge type={res.status} />
                 </td>
                 <td className="px-8 py-4 text-right">
-                  <button className="text-light hover:text-[#F5A623] transition-colors">
-                    <Edit2 size={18} />
-                  </button>
+                  <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <EditButton />
+                    <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-red-500 hover:border-red-500 transition-all">
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

@@ -1,6 +1,6 @@
 import { reservationInputHandler } from "@/actions/reserve";
 import React from "react";
-import SubmitButton from "./submit-button";
+import SubmitButton from "./buttons/submit-button";
 
 export default function Reservation(): React.ReactNode {
   return (
