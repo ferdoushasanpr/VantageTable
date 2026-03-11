@@ -26,7 +26,7 @@ const ItemDetailsPage = async ({
             src={item.image}
             fill
             alt={item.name}
-            className="w-full h-full object-cover grayscale-[15%] brightness-90"
+            className="w-full h-full object-cover grayscale-15 brightness-90"
           />
         </div>
 
