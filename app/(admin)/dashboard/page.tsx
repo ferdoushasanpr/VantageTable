@@ -4,12 +4,19 @@ import StatCard from "@/components/statcard";
 import { getCountReservations, getLatestReservations } from "@/actions/reserve";
 import Link from "next/link";
 import { Reservation } from "@/types/reservation";
+import { getCountFoods } from "@/actions/menu";
 
 const DashboardPage = async (): Promise<React.ReactNode> => {
   const data = await getLatestReservations();
-  const totalReservationsData = await getCountReservations();
-  const totalReservations = totalReservationsData.total;
   const reservations = data.data;
+
+  const totalReservationsCountData = await getCountReservations();
+  const totalReservations = totalReservationsCountData.data.totalReservations;
+  const totalPendingReservations =
+    totalReservationsCountData.data.totalPendingReservations;
+  const totalConfirmedGuests =
+    totalReservationsCountData.data.totalConfirmedGuests;
+  const totalFoods = await getCountFoods();
 
   return (
     <main className="flex-1 p-8 overflow-y-auto">
@@ -39,10 +46,10 @@ const DashboardPage = async (): Promise<React.ReactNode> => {
       </header>
 
       <div className="grid grid-cols-4 gap-6 mb-10">
-        <StatCard title="Total Food Items" value="42" />
+        <StatCard title="Total Food Items" value={totalFoods} />
         <StatCard title="Total Reservations" value={totalReservations} />
-        <StatCard title="Total Guests" value="48" />
-        <StatCard title="Pending Requests" value="07" />
+        <StatCard title="Total Guests" value={totalConfirmedGuests} />
+        <StatCard title="Pending Requests" value={totalPendingReservations} />
       </div>
 
       <div className="bg-[#1a1610] border border-stone-800/50 rounded-3xl p-6">
