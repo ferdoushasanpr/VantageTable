@@ -2,12 +2,29 @@ import { prisma } from "@/lib/prisma";
 
 export const GET = async () => {
   try {
-    const data = await prisma.reservation.count();
+    const totalReservations = await prisma.reservation.count();
+    const totalPendingReservations = await prisma.reservation.count({
+      where: {
+        status: "pending",
+      },
+    });
+    const totalConfirmedGuests = await prisma.reservation.aggregate({
+      _sum: {
+        guests: true,
+      },
+      where: {
+        status: "confirmed",
+      },
+    });
 
     return Response.json(
       {
         success: true,
-        total: data,
+        data: {
+          totalReservations,
+          totalPendingReservations,
+          totalConfirmedGuests: totalConfirmedGuests._sum.guests || 0,
+        },
       },
       { status: 200 },
     );
