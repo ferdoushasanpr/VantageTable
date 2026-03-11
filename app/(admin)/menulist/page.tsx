@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import FilterTab from "@/components/filtertab";
 import PageButton from "@/components/pagebutton";
-import { fetchMenu } from "@/actions/menu";
+import { fetchMenu, getCountFoods } from "@/actions/menu";
 import Image from "next/image";
 import Link from "next/link";
 import { Menuitem } from "@/types/menu";
@@ -18,13 +18,15 @@ const MenulistPage = async (): Promise<React.ReactNode> => {
   const data = await fetchMenu();
   const menuItems = data.data;
 
+  const totalFoods = await getCountFoods();
+
   return (
     <main className="flex-1 p-10 flex flex-col">
       <header className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-4">
           <h2 className="text-2xl font-bold text-white">Food Menu</h2>
           <span className="bg-[#231F16] text-primary text-xs px-3 py-1 rounded-full border border-[#F5A623]/20">
-            128 Items
+            {totalFoods} Items
           </span>
         </div>
 
