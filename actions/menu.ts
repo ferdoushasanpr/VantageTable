@@ -113,3 +113,18 @@ export const fetchMenuBySlug = async (slug: string) => {
 
   return menu;
 };
+
+export const getCountFoods = async () => {
+  const data = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/menu/count`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  const foods = await data.json();
+
+  return foods.data.totalFoods;
+};
