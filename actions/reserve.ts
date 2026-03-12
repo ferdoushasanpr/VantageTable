@@ -100,3 +100,25 @@ export const getCountReservations = async () => {
 
   return reservations;
 };
+
+export const updateReservationStatus = async (id: number, status: string) => {
+  const response = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, status }),
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to update reservation status");
+  }
+
+  const data = await response.json();
+  console.log("Reservation status updated:", data);
+
+  return data;
+};
