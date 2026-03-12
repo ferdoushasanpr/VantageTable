@@ -94,7 +94,7 @@ const ReservationsPage = async (): Promise<React.ReactNode> => {
                 </td>
                 <td className="px-8 py-4 text-right">
                   <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <EditButton />
+                    <EditButton id={res.id} />
                     <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-red-500 hover:border-red-500 transition-all">
                       <Trash2 size={16} />
                     </button>

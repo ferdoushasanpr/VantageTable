@@ -118,7 +118,6 @@ export const updateReservationStatus = async (id: number, status: string) => {
   }
 
   const data = await response.json();
-  console.log("Reservation status updated:", data);
 
   return data;
 };

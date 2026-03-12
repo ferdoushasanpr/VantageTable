@@ -1,18 +1,24 @@
 "use client";
 
+import { updateReservationStatus } from "@/actions/reserve";
 import { Edit2 } from "lucide-react";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
-export default function EditButton(): React.ReactNode {
+export default function EditButton({ id }: { id: number }): React.ReactNode {
   const [showStatus, setShowStatus] = useState(false);
   const [status, setStatus] = useState("pending");
+
+  const updateStatusHandler = async (e: ChangeEvent<HTMLSelectElement>) => {
+    await updateReservationStatus(id, e.target.value);
+    setStatus(e.target.value);
+  };
 
   return (
     <div className="flex gap-2">
       {showStatus && (
         <select
           value={status}
-          onChange={(e) => setStatus(e.target.value)}
+          onChange={updateStatusHandler}
           className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:border-primary transition-all"
         >
           <option value="pending">Pending</option>
