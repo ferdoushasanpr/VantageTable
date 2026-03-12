@@ -57,3 +57,34 @@ export const GET = async () => {
     await prisma.$disconnect();
   }
 };
+
+export const PUT = async (req: Request) => {
+  try {
+    const { id, status } = await req.json();
+    if (!id || !status) {
+      return Response.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
+    }
+
+    const reservation = await prisma.reservation.update({
+      where: { id },
+      data: { status },
+    });
+
+    return Response.json(
+      {
+        success: true,
+        message: "Successfully updated reservation",
+        data: reservation,
+      },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("Reservation Error:", error);
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
+};
