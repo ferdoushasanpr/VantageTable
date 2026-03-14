@@ -121,3 +121,23 @@ export const updateReservationStatus = async (id: number, status: string) => {
 
   return data;
 };
+
+export const deleteReservation = async (id: number) => {
+  const response = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to delete reservation");
+  }
+
+  const data = await response.json();
+
+  return data;
+};
