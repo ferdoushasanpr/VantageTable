@@ -59,3 +59,35 @@ export const GET = async () => {
     await prisma.$disconnect();
   }
 };
+
+export const DELETE = async (req: Request) => {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return Response.json({ error: "Missing required id" }, { status: 400 });
+    }
+
+    const parsedId = parseInt(id);
+
+    if (isNaN(parsedId)) {
+      return Response.json({ error: "Invalid id format" }, { status: 400 });
+    }
+
+    await prisma.food.delete({
+      where: { id: parsedId },
+    });
+
+    return Response.json(
+      {
+        success: true,
+        message: "Successfully deleted food item",
+      },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("Menu Error:", error);
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+};
