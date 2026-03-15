@@ -1,6 +1,7 @@
 "use server";
 
 import { uploadImage } from "@/lib/cloudinary";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import slugify from "slugify";
 
@@ -127,4 +128,22 @@ export const getCountFoods = async () => {
   const foods = await data.json();
 
   return foods.data.totalFoods;
+};
+
+export const deleteMenu = async (id: number) => {
+  const response = await fetch(
+    `${process.env.APP_URL || "http://localhost:3000"}/api/menu?id=${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  if (!response.ok) {
+    throw new Error("Failed to delete menu item");
+  }
+  const data = await response.json();
+  revalidatePath("/menulist");
+  return data;
 };
