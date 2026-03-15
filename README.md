@@ -1,8 +1,8 @@
 # 🍽️ Gourmet Haven
 
-**Gourmet Haven** is a full-stack restaurant management and food ordering platform built with **Next.js** designed to deliver a seamless experience for both customers and administrators.
+**Gourmet Haven** is a full-stack restaurant management and food ordering platform built with **Next.js** designed to deliver a seamless experience for both customers and administrators. The project combines web development and AI by integrating a chatbot trained with LangChain using restaurant data from the database.
 
-Users can explore delicious dishes, filter menu items, and reserve tables, while admins can manage reservations and food items efficiently through a secure dashboard.
+Users can explore delicious dishes, filter menu items, reserve tables, and interact with an AI-powered chatbot for instant assistance, while admins can manage reservations and food items efficiently through a secure dashboard.
 
 ---
 
@@ -22,37 +22,23 @@ Users can explore delicious dishes, filter menu items, and reserve tables, while
 
 ## 👥 User Features
 
-### 🏠 Home Page
-
-- 🎞️ Hero section with dynamic photo carousel
-
 - 🍲 Latest food highlights
 
 - 📋 Filterable food menu
 
 - 📅 “Reserve Now” table reservation form
 
-### 📖 Menu Page
-
 - Complete list of available food items
-
-- Category-based filtering
-
-- Responsive design for all devices
 
 ---
 
 ## 🔐 Admin Features
-
-### 📊 Reservation Management
 
 - View all restaurant reservations
 
 - Update reservation status
 
 - Delete reservations
-
-### 🍕 Food Management
 
 - Add new food items
 
@@ -63,6 +49,10 @@ Users can explore delicious dishes, filter menu items, and reserve tables, while
 - View complete food list
 
 ---
+
+## 🤖 AI Chatbot
+
+- Answers questions about: Meals available on the menu, Ingredients or descriptions of dishes, Pricing information, Reservation availability
 
 ## ⚙️ Installation & Setup
 
