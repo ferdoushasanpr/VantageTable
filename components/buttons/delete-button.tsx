@@ -1,12 +1,23 @@
 "use client";
 
+import { deleteMenu } from "@/actions/menu";
 import { deleteReservation } from "@/actions/reserve";
 import { Trash2 } from "lucide-react";
 import React from "react";
 
-export default function DeleteButton({ id }: { id: number }) {
+export default function DeleteButton({
+  id,
+  item,
+}: {
+  id: number;
+  item: string;
+}): React.ReactNode {
   const handleDelete = async () => {
-    await deleteReservation(id);
+    if (item === "reservation") {
+      await deleteReservation(id);
+    } else if (item === "menu") {
+      await deleteMenu(id);
+    }
   };
 
   return (
