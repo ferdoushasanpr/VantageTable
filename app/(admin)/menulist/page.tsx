@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  Search,
-  Plus,
-  Edit2,
-  Trash2,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Search, Plus, Edit2, ChevronLeft, ChevronRight } from "lucide-react";
 import FilterTab from "@/components/filtertab";
 import PageButton from "@/components/pagebutton";
 import { fetchMenu, getCountFoods } from "@/actions/menu";
 import Image from "next/image";
 import Link from "next/link";
 import { Menuitem } from "@/types/menu";
+import DeleteButton from "@/components/buttons/delete-button";
 
 const MenulistPage = async (): Promise<React.ReactNode> => {
   const data = await fetchMenu();
@@ -114,9 +108,7 @@ const MenulistPage = async (): Promise<React.ReactNode> => {
                       <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-primary hover:border-primary transition-all">
                         <Edit2 size={16} />
                       </button>
-                      <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-red-500 hover:border-red-500 transition-all">
-                        <Trash2 size={16} />
-                      </button>
+                      <DeleteButton id={item.id} item="menu" />
                     </div>
                   </td>
                 </tr>
