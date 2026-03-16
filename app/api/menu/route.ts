@@ -86,7 +86,7 @@ export const DELETE = async (req: Request) => {
       return Response.json({ error: "Invalid id format" }, { status: 400 });
     }
 
-    await prisma.food.delete({
+    const food = await prisma.food.delete({
       where: { id: parsedId },
     });
 
@@ -94,6 +94,7 @@ export const DELETE = async (req: Request) => {
       {
         success: true,
         message: "Successfully deleted food item",
+        data: food,
       },
       { status: 200 },
     );
