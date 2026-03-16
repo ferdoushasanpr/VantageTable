@@ -11,6 +11,23 @@ export const POST = async (req: Request) => {
       );
     }
 
+    const existingReservation = await prisma.reservation.findFirst({
+      where: {
+        date,
+        time,
+      },
+    });
+
+    if (existingReservation) {
+      return Response.json(
+        {
+          success: false,
+          message: "Reservation already exists for this time and date",
+        },
+        { status: 400 },
+      );
+    }
+
     const reservation = await prisma.reservation.create({
       data: {
         name,

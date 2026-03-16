@@ -46,14 +46,11 @@ export const reservationInputHandler = async (formData: FormData) => {
     },
   );
 
-  if (!response.ok) {
-    throw new Error("Reservation failed");
-  }
-
   const data = await response.json();
-  console.log("Reservation successful:", data);
 
-  redirect("/bookings");
+  if (data.success) {
+    redirect("/bookings");
+  }
 };
 
 export const getAllReservations = async () => {
