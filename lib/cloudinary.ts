@@ -32,3 +32,7 @@ export const uploadImage = async (image: File) => {
 
   return { secure_url: result.secure_url, public_id: result.public_id };
 };
+
+export const deleteImage = async (publicId: string) => {
+  await cloudinary.uploader.destroy(publicId);
+};
