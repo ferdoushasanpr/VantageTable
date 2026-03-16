@@ -30,5 +30,5 @@ export const uploadImage = async (image: File) => {
     folder: "menu_images",
   });
 
-  return result.secure_url;
+  return { secure_url: result.secure_url, public_id: result.public_id };
 };

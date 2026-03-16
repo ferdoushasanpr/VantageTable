@@ -54,6 +54,8 @@ export const menuSubmitHandler = async (formData: FormData) => {
 
   const slug = slugify(name.toLowerCase(), { strict: true });
   const imageUrl = await uploadImage(image);
+  const imageUrlString = imageUrl.secure_url;
+  const imagePublicId = imageUrl.public_id;
 
   const response = await fetch(
     `${process.env.APP_URL || "http://localhost:3000"}/api/menu`,
@@ -68,7 +70,8 @@ export const menuSubmitHandler = async (formData: FormData) => {
         price: parseInt(price),
         desc: desc.trim(),
         slug: slug,
-        image: imageUrl,
+        image: imageUrlString,
+        image_public_id: imagePublicId,
         status: status === "true",
       }),
     },
