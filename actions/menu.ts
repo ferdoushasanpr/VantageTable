@@ -1,6 +1,6 @@
 "use server";
 
-import { uploadImage } from "@/lib/cloudinary";
+import { deleteImage, uploadImage } from "@/lib/cloudinary";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import slugify from "slugify";
@@ -147,6 +147,8 @@ export const deleteMenu = async (id: number) => {
     throw new Error("Failed to delete menu item");
   }
   const data = await response.json();
+  const imagePublicId = data.data.image_public_id;
+  await deleteImage(imagePublicId);
   revalidatePath("/menulist");
   return data;
 };
