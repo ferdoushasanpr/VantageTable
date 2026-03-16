@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 type ReservationFormState = {
@@ -124,6 +125,7 @@ export const updateReservationStatus = async (id: number, status: string) => {
   }
 
   const data = await response.json();
+  revalidatePath("/reservations");
 
   return data;
 };

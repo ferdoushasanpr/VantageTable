@@ -105,9 +105,12 @@ const MenulistPage = async (): Promise<React.ReactNode> => {
                   </td>
                   <td className="px-8 py-4">
                     <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-primary hover:border-primary transition-all">
+                      <Link
+                        href={`/updatemenu?id=${item.id}`}
+                        className="p-2 bg-[#231F16] border border-[#332D21] rounded-lg text-light hover:text-primary hover:border-primary transition-all"
+                      >
                         <Edit2 size={16} />
-                      </button>
+                      </Link>
                       <DeleteButton id={item.id} item="menu" />
                     </div>
                   </td>
