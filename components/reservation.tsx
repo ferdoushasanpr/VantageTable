@@ -1,8 +1,14 @@
+"use client";
+
 import { reservationInputHandler } from "@/actions/reserve";
-import React from "react";
+import React, { useActionState } from "react";
 import SubmitButton from "./buttons/submit-button";
 
 export default function Reservation(): React.ReactNode {
+  const [state, formAction] = useActionState(reservationInputHandler, {
+    error: "",
+  });
+
   return (
     <section className="flex items-center justify-center bg-[#0d0a07f5] py-24">
       <div className="w-full max-w-3xl bg-dark-light border border-[#CBB790]/20 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden">
@@ -15,7 +21,7 @@ export default function Reservation(): React.ReactNode {
             larger than 8, please call us directly.
           </p>
         </div>
-        <form className="space-y-6" action={reservationInputHandler}>
+        <form className="space-y-6" action={formAction}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold uppercase tracking-widest text-light">
@@ -84,6 +90,10 @@ export default function Reservation(): React.ReactNode {
               </div>
             </div>
           </div>
+
+          {state?.error && (
+            <p className="text-red-500 text-sm text-center">{state.error}</p>
+          )}
 
           <SubmitButton />
         </form>

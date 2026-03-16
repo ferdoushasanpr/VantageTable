@@ -2,7 +2,14 @@
 
 import { redirect } from "next/navigation";
 
-export const reservationInputHandler = async (formData: FormData) => {
+type ReservationFormState = {
+  error?: string;
+};
+
+export const reservationInputHandler = async (
+  prevState: ReservationFormState,
+  formData: FormData,
+) => {
   const name = formData.get("name") as string | null;
   const phone = formData.get("phone") as string | null;
   const date = formData.get("date") as string | null;
@@ -48,9 +55,11 @@ export const reservationInputHandler = async (formData: FormData) => {
 
   const data = await response.json();
 
-  if (data.success) {
-    redirect("/bookings");
+  if (!data.success) {
+    return { error: data.message };
   }
+
+  redirect("/bookings");
 };
 
 export const getAllReservations = async () => {
