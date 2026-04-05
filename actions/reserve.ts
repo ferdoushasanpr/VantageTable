@@ -1,5 +1,6 @@
 "use server";
 
+import { getBaseUrl } from "@/utilities/baseURL";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -37,7 +38,7 @@ export const reservationInputHandler = async (
     throw new Error("Guests is required and must be a number greater than 0.");
   }
 
-  const response = await fetch(`${process.env.APP_URL}/api/reservation`, {
+  const response = await fetch(`${getBaseUrl()}/api/reservation`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -61,7 +62,7 @@ export const reservationInputHandler = async (
 };
 
 export const getAllReservations = async () => {
-  const data = await fetch(`${process.env.APP_URL}/api/reservation`, {
+  const data = await fetch(`${getBaseUrl()}/api/reservation`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -73,7 +74,7 @@ export const getAllReservations = async () => {
 };
 
 export const getLatestReservations = async () => {
-  const data = await fetch(`${process.env.APP_URL}/api/reservation/latest`, {
+  const data = await fetch(`${getBaseUrl()}/api/reservation/latest`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -85,7 +86,7 @@ export const getLatestReservations = async () => {
 };
 
 export const getCountReservations = async () => {
-  const data = await fetch(`${process.env.APP_URL}/api/reservation/count`, {
+  const data = await fetch(`${getBaseUrl()}/api/reservation/count`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -97,7 +98,7 @@ export const getCountReservations = async () => {
 };
 
 export const updateReservationStatus = async (id: number, status: string) => {
-  const response = await fetch(`${process.env.APP_URL}/api/reservation`, {
+  const response = await fetch(`${getBaseUrl()}/api/reservation`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -116,7 +117,7 @@ export const updateReservationStatus = async (id: number, status: string) => {
 };
 
 export const deleteReservation = async (id: number) => {
-  const response = await fetch(`${process.env.APP_URL}/api/reservation/${id}`, {
+  const response = await fetch(`${getBaseUrl()}/api/reservation/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

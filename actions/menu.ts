@@ -1,6 +1,7 @@
 "use server";
 
 import { deleteImage, uploadImage } from "@/lib/cloudinary";
+import { getBaseUrl } from "@/utilities/baseURL";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import slugify from "slugify";
@@ -57,7 +58,7 @@ export const menuSubmitHandler = async (formData: FormData) => {
   const imageUrlString = imageUrl.secure_url;
   const imagePublicId = imageUrl.public_id;
 
-  const response = await fetch(`${process.env.APP_URL}/api/menu`, {
+  const response = await fetch(`${getBaseUrl()}/api/menu`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -84,7 +85,7 @@ export const menuSubmitHandler = async (formData: FormData) => {
 };
 
 export const fetchMenu = async () => {
-  const data = await fetch(`${process.env.APP_URL}/api/menu`, {
+  const data = await fetch(`${getBaseUrl()}/api/menu`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -97,7 +98,7 @@ export const fetchMenu = async () => {
 };
 
 export const fetchMenuBySlug = async (slug: string) => {
-  const data = await fetch(`${process.env.APP_URL}/api/menu/${slug}`, {
+  const data = await fetch(`${getBaseUrl()}/api/menu/${slug}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -110,7 +111,7 @@ export const fetchMenuBySlug = async (slug: string) => {
 };
 
 export const getCountFoods = async () => {
-  const data = await fetch(`${process.env.APP_URL}/api/menu/count`, {
+  const data = await fetch(`${getBaseUrl()}/api/menu/count`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -122,7 +123,7 @@ export const getCountFoods = async () => {
 };
 
 export const deleteMenu = async (id: number) => {
-  const response = await fetch(`${process.env.APP_URL}/api/menu?id=${id}`, {
+  const response = await fetch(`${getBaseUrl()}/api/menu?id=${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -139,7 +140,7 @@ export const deleteMenu = async (id: number) => {
 };
 
 export const fetchMenuById = async (id: string) => {
-  const data = await fetch(`${process.env.APP_URL}/api/menu/food?${id}`, {
+  const data = await fetch(`${getBaseUrl()}/api/menu/food?${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
