@@ -37,22 +37,19 @@ export const reservationInputHandler = async (
     throw new Error("Guests is required and must be a number greater than 0.");
   }
 
-  const response = await fetch(
-    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name.trim(),
-        phone: phone.trim(),
-        date: new Date(date),
-        time: time.trim(),
-        guests: Number(guestsRaw),
-      }),
+  const response = await fetch(`${process.env.APP_URL}/api/reservation`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({
+      name: name.trim(),
+      phone: phone.trim(),
+      date: new Date(date),
+      time: time.trim(),
+      guests: Number(guestsRaw),
+    }),
+  });
 
   const data = await response.json();
 
@@ -64,61 +61,49 @@ export const reservationInputHandler = async (
 };
 
 export const getAllReservations = async () => {
-  const data = await fetch(
-    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const data = await fetch(`${process.env.APP_URL}/api/reservation`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+  });
   const reservations = await data.json();
 
   return reservations;
 };
 
 export const getLatestReservations = async () => {
-  const data = await fetch(
-    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation/latest`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const data = await fetch(`${process.env.APP_URL}/api/reservation/latest`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+  });
   const reservations = await data.json();
 
   return reservations;
 };
 
 export const getCountReservations = async () => {
-  const data = await fetch(
-    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation/count`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const data = await fetch(`${process.env.APP_URL}/api/reservation/count`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+  });
   const reservations = await data.json();
 
   return reservations;
 };
 
 export const updateReservationStatus = async (id: number, status: string) => {
-  const response = await fetch(
-    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id, status }),
+  const response = await fetch(`${process.env.APP_URL}/api/reservation`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({ id, status }),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to update reservation status");
@@ -131,15 +116,12 @@ export const updateReservationStatus = async (id: number, status: string) => {
 };
 
 export const deleteReservation = async (id: number) => {
-  const response = await fetch(
-    `${process.env.APP_URL || "http://localhost:3000"}/api/reservation/${id}`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const response = await fetch(`${process.env.APP_URL}/api/reservation/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+  });
 
   if (!response.ok) {
     throw new Error("Failed to delete reservation");
