@@ -4,6 +4,8 @@ import { reservationInputHandler } from "@/actions/reserve";
 import React, { useActionState } from "react";
 import SubmitButton from "./buttons/submit-button";
 
+export const dynamic = "force-dynamic";
+
 export default function Reservation(): React.ReactNode {
   const [state, formAction] = useActionState(reservationInputHandler, {
     error: "",
