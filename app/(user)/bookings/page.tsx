@@ -3,6 +3,8 @@ import { Calendar, Clock, Users, Phone, User } from "lucide-react";
 import { getAllReservations } from "@/actions/reserve";
 import { Reservation } from "@/types/reservation";
 
+export const dynamic = "force-dynamic";
+
 const ReservationListPage = async (): Promise<React.ReactNode> => {
   const data = await getAllReservations();
   const reservations = data.data;

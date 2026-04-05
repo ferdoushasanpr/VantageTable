@@ -6,6 +6,8 @@ import React from "react";
 
 const categories = ["Main Course", "Appetizers", "Desserts"];
 
+export const dynamic = "force-dynamic";
+
 const MenuPage = async (): Promise<React.ReactNode> => {
   const data = await fetchMenu();
   const menuItems = data.data;
