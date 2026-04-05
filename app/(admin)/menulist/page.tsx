@@ -8,6 +8,8 @@ import Link from "next/link";
 import { Menuitem } from "@/types/menu";
 import DeleteButton from "@/components/buttons/delete-button";
 
+export const dynamic = "force-dynamic";
+
 const MenulistPage = async (): Promise<React.ReactNode> => {
   const data = await fetchMenu();
   const menuItems = data.data;
