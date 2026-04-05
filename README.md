@@ -54,6 +54,22 @@ Users can explore delicious dishes, filter menu items, reserve tables, and inter
 
 - Answers questions about: Meals available on the menu, Ingredients or descriptions of dishes, Pricing information, Reservation availability
 
+---
+
+## Screenshots
+
+<img width="100%" height="100%" alt="localhost_3000_" src="https://github.com/user-attachments/assets/4f2e1879-e3ee-4197-8d0f-5a64895e81f0" />
+<img width="100%" height="100%" alt="localhost_3000_menu" src="https://github.com/user-attachments/assets/bfd8525c-a2a4-45b8-bcec-829b3262a891" />
+<img width="100%" height="100%" alt="localhost_3000_menu (1)" src="https://github.com/user-attachments/assets/ea3e2bd9-3647-4219-a4c3-102d3abf9f46" />
+<img width="100%" height="100%" alt="localhost_3000_bookings" src="https://github.com/user-attachments/assets/259c80a8-ce2b-4677-9a94-142bc624fdf9" />
+<img width="100%" height="100%" alt="localhost_3000_bookings (1)" src="https://github.com/user-attachments/assets/bce1df2e-8360-44f5-8e24-75f072a5791b" />
+<img width="100%" height="100%" alt="localhost_3000_dashboard" src="https://github.com/user-attachments/assets/446104fd-7b3b-4a52-a803-f62fda804cc4" />
+<img width="100%" height="100%" alt="localhost_3000_dashboard (1)" src="https://github.com/user-attachments/assets/cadc3a35-16e3-4994-9e28-a5bb730ad33d" />
+<img width="100%" height="100%" alt="localhost_3000_dashboard (2)" src="https://github.com/user-attachments/assets/999aefd0-c737-4a27-a109-c1cacc6444b5" />
+<img width="100%" height="100%" alt="localhost_3000_dashboard (3)" src="https://github.com/user-attachments/assets/128d2b82-50b5-46e9-90c1-244592d3d9d6" />
+
+---
+
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the Repository
