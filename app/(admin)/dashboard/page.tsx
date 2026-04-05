@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Reservation } from "@/types/reservation";
 import { getCountFoods } from "@/actions/menu";
 
+export const dynamic = "force-dynamic";
+
 const DashboardPage = async (): Promise<React.ReactNode> => {
   const data = await getLatestReservations();
   const reservations = data.data;
