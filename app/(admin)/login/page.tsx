@@ -2,7 +2,7 @@ import { Mail, Lock, ShieldCheck } from "lucide-react";
 
 export default function LoginPage() {
   return (
-    <section className="bg-dark-light p-4 md:py-36">
+    <section className="w-full bg-dark-light p-4 md:py-36">
       <div className="max-w-sm p-10 mx-auto bg-[#12100A] rounded-2xl">
         <div className="my-2">
           <h5 className="font-bold text-xl text-center text-white">
