@@ -1,3 +1,4 @@
+import { authActionHandler } from "@/actions/auth";
 import { Mail, Lock, ShieldCheck } from "lucide-react";
 
 export default function LoginPage() {
@@ -12,7 +13,7 @@ export default function LoginPage() {
             Sign in to manage your kitchen and staff.
           </p>
         </div>
-        <form className="my-8">
+        <form className="my-8" action={authActionHandler}>
           <div className="flex flex-col py-2">
             <label className="text-white text-sm">Email Address</label>
             <div className="flex items-center border border-[#36302a] my-2 p-3 rounded-2xl focus-within:border-[#F4AF25] transition">
