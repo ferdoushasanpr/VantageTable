@@ -15,8 +15,6 @@ import { Reservation } from "@/types/reservation";
 import EditButton from "@/components/buttons/edit-button";
 import DeleteButton from "@/components/buttons/delete-button";
 
-export const dynamic = "force-dynamic";
-
 const ReservationsPage = async (): Promise<React.ReactNode> => {
   const data = await getAllReservations();
   const reservations = data.data;
