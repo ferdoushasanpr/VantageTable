@@ -1,6 +1,7 @@
 "use server";
 
-import { getBaseUrl } from "@/utilities/baseURL";
+import { ReservationStatus } from "@/app/generated/prisma/client";
+import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -18,6 +19,7 @@ export const reservationInputHandler = async (
   const time = formData.get("time") as string | null;
   const guestsRaw = formData.get("guests") as string | null;
 
+  // Validation
   if (!name || name.trim().length < 2) {
     throw new Error("Name is required and must be at least 2 characters.");
   }
@@ -38,97 +40,110 @@ export const reservationInputHandler = async (
     throw new Error("Guests is required and must be a number greater than 0.");
   }
 
-  const response = await fetch(`${getBaseUrl()}/api/reservation`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  // Check existing reservation
+  const existingReservation = await prisma.reservation.findFirst({
+    where: {
+      date: new Date(date),
+      time: time.trim(),
     },
-    body: JSON.stringify({
+  });
+
+  if (existingReservation) {
+    return {
+      error: "Reservation already exists for this time and date",
+    };
+  }
+
+  // Create reservation
+  await prisma.reservation.create({
+    data: {
       name: name.trim(),
       phone: phone.trim(),
       date: new Date(date),
       time: time.trim(),
       guests: Number(guestsRaw),
-    }),
+    },
   });
 
-  const data = await response.json();
-
-  if (!data.success) {
-    return { error: data.message };
-  }
+  revalidatePath("/reservations");
+  revalidatePath("/bookings");
 
   redirect("/bookings");
 };
 
 export const getAllReservations = async () => {
-  const data = await fetch(`${getBaseUrl()}/api/reservation`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const reservations = await data.json();
+  const reservations = await prisma.reservation.findMany();
 
   return reservations;
 };
 
 export const getLatestReservations = async () => {
-  const data = await fetch(`${getBaseUrl()}/api/reservation/latest`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
+  const reservations = await prisma.reservation.findMany({
+    orderBy: {
+      createdAt: "desc",
     },
+    take: 6,
   });
-  const reservations = await data.json();
 
   return reservations;
 };
 
 export const getCountReservations = async () => {
-  const data = await fetch(`${getBaseUrl()}/api/reservation/count`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
+  const totalReservations = await prisma.reservation.count();
+
+  const totalPendingReservations = await prisma.reservation.count({
+    where: {
+      status: "pending",
     },
   });
-  const reservations = await data.json();
 
-  return reservations;
+  const totalConfirmedGuests = await prisma.reservation.aggregate({
+    _sum: {
+      guests: true,
+    },
+    where: {
+      status: "confirmed",
+    },
+  });
+
+  return {
+    totalReservations,
+    totalPendingReservations,
+    totalConfirmedGuests: totalConfirmedGuests._sum.guests || 0,
+  };
 };
 
-export const updateReservationStatus = async (id: number, status: string) => {
-  const response = await fetch(`${getBaseUrl()}/api/reservation`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ id, status }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to update reservation status");
+export const updateReservationStatus = async (
+  id: number,
+  status: ReservationStatus,
+) => {
+  if (!id || !status) {
+    throw new Error("Missing required fields");
   }
 
-  const data = await response.json();
+  const reservation = await prisma.reservation.update({
+    where: { id },
+    data: { status },
+  });
+
   revalidatePath("/reservations");
 
-  return data;
+  return reservation;
 };
 
 export const deleteReservation = async (id: number) => {
-  const response = await fetch(`${getBaseUrl()}/api/reservation/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to delete reservation");
+  if (!id) {
+    throw new Error("Reservation id is required");
   }
 
-  const data = await response.json();
+  await prisma.reservation.delete({
+    where: { id },
+  });
 
-  return data;
+  revalidatePath("/reservations");
+
+  return {
+    success: true,
+    message: "Successfully deleted reservation",
+  };
 };

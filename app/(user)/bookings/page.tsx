@@ -4,8 +4,7 @@ import { getAllReservations } from "@/actions/reserve";
 import { Reservation } from "@/types/reservation";
 
 const ReservationListPage = async (): Promise<React.ReactNode> => {
-  const data = await getAllReservations();
-  const reservations = data.data;
+  const reservations = await getAllReservations();
   return (
     <div className="min-h-screen bg-dark-light text-white font-work p-6 md:p-12">
       <header className="max-w-6xl mx-auto mb-16">
