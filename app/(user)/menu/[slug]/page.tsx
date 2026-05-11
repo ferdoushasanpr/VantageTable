@@ -10,13 +10,11 @@ const ItemDetailsPage = async ({
 }): Promise<React.ReactNode> => {
   const { slug } = await params;
 
-  const result = await fetchMenuBySlug(slug);
+  const item = await fetchMenuBySlug(slug);
 
-  if (!result) {
+  if (!item) {
     notFound();
   }
-
-  const item = result.data;
 
   return (
     <section className="bg-[#0C0C0C]">

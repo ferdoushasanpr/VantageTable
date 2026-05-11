@@ -7,8 +7,7 @@ import React from "react";
 const categories = ["Main Course", "Appetizers", "Desserts"];
 
 const MenuPage = async (): Promise<React.ReactNode> => {
-  const data = await fetchMenu();
-  const menuItems = data.data;
+  const menuItems = await fetchMenu();
 
   const filterMenu = (cat: string) => {
     return menuItems.filter((item: Menuitem) => item.cat == cat);

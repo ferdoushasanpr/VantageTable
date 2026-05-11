@@ -3,8 +3,7 @@ import React from "react";
 import MenuClient from "./menu-client";
 
 const Menu = async (): Promise<React.ReactNode> => {
-  const data = await fetchMenu();
-  const menuItems = data.data;
+  const menuItems = await fetchMenu();
 
   return <MenuClient menuItems={menuItems} />;
 };

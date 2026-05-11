@@ -1,7 +1,7 @@
 "use server";
 
 import { deleteImage, uploadImage } from "@/lib/cloudinary";
-import { getBaseUrl } from "@/utilities/baseURL";
+import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import slugify from "slugify";
@@ -27,6 +27,7 @@ export const menuSubmitHandler = async (formData: FormData) => {
   }
 
   const parsedPrice = Number(price);
+
   if (isNaN(parsedPrice) || parsedPrice <= 0) {
     throw new Error("Price must be a valid positive number");
   }
@@ -40,11 +41,13 @@ export const menuSubmitHandler = async (formData: FormData) => {
   }
 
   const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
   if (!allowedTypes.includes(image.type)) {
     throw new Error("Image must be JPG, PNG, or WEBP");
   }
 
-  const maxSize = 2 * 1024 * 1024; // 2MB
+  const maxSize = 2 * 1024 * 1024;
+
   if (image.size > maxSize) {
     throw new Error("Image must be smaller than 2MB");
   }
@@ -54,100 +57,71 @@ export const menuSubmitHandler = async (formData: FormData) => {
   }
 
   const slug = slugify(name.toLowerCase(), { strict: true });
-  const imageUrl = await uploadImage(image);
-  const imageUrlString = imageUrl.secure_url;
-  const imagePublicId = imageUrl.public_id;
 
-  const response = await fetch(`${getBaseUrl()}/api/menu`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  const imageUrl = await uploadImage(image);
+
+  await prisma.food.create({
+    data: {
       name: name.trim(),
       cat: cat.trim(),
-      price: parseInt(price),
+      price: parsedPrice,
       desc: desc.trim(),
-      slug: slug,
-      image: imageUrlString,
-      image_public_id: imagePublicId,
+      slug,
+      image: imageUrl.secure_url,
+      image_public_id: imageUrl.public_id,
       status: status === "true",
-    }),
+    },
   });
 
-  if (!response.ok) {
-    throw new Error("Reservation failed");
-  }
+  revalidatePath("/menulist");
 
-  const data = await response.json();
-  console.log(data);
   redirect("/menulist");
 };
 
 export const fetchMenu = async () => {
-  const data = await fetch(`${getBaseUrl()}/api/menu`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const menus = await prisma.food.findMany();
 
-  const menu = await data.json();
-
-  return menu;
+  return menus;
 };
 
 export const fetchMenuBySlug = async (slug: string) => {
-  const data = await fetch(`${getBaseUrl()}/api/menu/${slug}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  const menu = await prisma.food.findFirst({
+    where: { slug },
   });
-
-  const menu = await data.json();
 
   return menu;
 };
 
 export const getCountFoods = async () => {
-  const data = await fetch(`${getBaseUrl()}/api/menu/count`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const foods = await data.json();
+  const totalFoods = await prisma.food.count();
 
-  return foods.data.totalFoods;
+  return totalFoods.toString();
 };
 
 export const deleteMenu = async (id: number) => {
-  const response = await fetch(`${getBaseUrl()}/api/menu?id=${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  const food = await prisma.food.delete({
+    where: { id },
   });
-  if (!response.ok) {
-    throw new Error("Failed to delete menu item");
+
+  if (food.image_public_id) {
+    await deleteImage(food.image_public_id);
   }
-  const data = await response.json();
-  const imagePublicId = data.data.image_public_id;
-  await deleteImage(imagePublicId);
+
   revalidatePath("/menulist");
-  return data;
+
+  return food;
 };
 
 export const fetchMenuById = async (id: string) => {
-  const data = await fetch(`${getBaseUrl()}/api/menu/food?${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  const parsedId = parseInt(id);
+
+  if (isNaN(parsedId)) {
+    throw new Error("Invalid id");
+  }
+
+  const food = await prisma.food.findFirst({
+    where: { id: parsedId },
   });
 
-  const menu = await data.json();
-
-  return menu;
+  return food;
 };
