@@ -3,13 +3,16 @@
 import { updateReservationStatus } from "@/actions/reserve";
 import { Edit2 } from "lucide-react";
 import React, { ChangeEvent, useState } from "react";
+import { ReservationStatus } from "@/app/generated/prisma/client";
 
 export default function EditButton({ id }: { id: number }): React.ReactNode {
   const [showStatus, setShowStatus] = useState(false);
   const [status, setStatus] = useState("pending");
 
   const updateStatusHandler = async (e: ChangeEvent<HTMLSelectElement>) => {
-    await updateReservationStatus(id, e.target.value);
+    const value = e.target.value as ReservationStatus;
+
+    await updateReservationStatus(id, value);
     setStatus(e.target.value);
   };
 
