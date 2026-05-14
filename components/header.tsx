@@ -42,9 +42,15 @@ export default function Header(): React.ReactNode {
         <div>
           <Link
             href="reserve"
-            className="bg-primary hover:bg-[#e69f26] text-black font-bold py-3 px-8 rounded-full transition-all text-sm"
+            className="bg-primary hover:bg-[#e69f26] text-black font-bold mx-1 py-3 px-6 rounded-full transition-all text-sm"
           >
             Reserve Now
+          </Link>
+          <Link
+            href="login"
+            className="bg-primary hover:bg-[#e69f26] text-black font-bold mx-1 py-3 px-6 rounded-full transition-all text-sm"
+          >
+            Admin Login
           </Link>
         </div>
       </nav>
