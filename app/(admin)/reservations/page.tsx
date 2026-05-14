@@ -16,8 +16,7 @@ import EditButton from "@/components/buttons/edit-button";
 import DeleteButton from "@/components/buttons/delete-button";
 
 const ReservationsPage = async (): Promise<React.ReactNode> => {
-  const data = await getAllReservations();
-  const reservations = data.data;
+  const reservations = await getAllReservations();
 
   return (
     <main className="flex-1 p-10 flex flex-col">

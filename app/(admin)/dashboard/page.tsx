@@ -7,15 +7,13 @@ import { Reservation } from "@/types/reservation";
 import { getCountFoods } from "@/actions/menu";
 
 const DashboardPage = async (): Promise<React.ReactNode> => {
-  const data = await getLatestReservations();
-  const reservations = data.data;
+  const reservations = await getLatestReservations();
 
   const totalReservationsCountData = await getCountReservations();
-  const totalReservations = totalReservationsCountData.data.totalReservations;
+  const totalReservations = totalReservationsCountData.totalReservations;
   const totalPendingReservations =
-    totalReservationsCountData.data.totalPendingReservations;
-  const totalConfirmedGuests =
-    totalReservationsCountData.data.totalConfirmedGuests;
+    totalReservationsCountData.totalPendingReservations;
+  const totalConfirmedGuests = totalReservationsCountData.totalConfirmedGuests;
   const totalFoods = await getCountFoods();
 
   return (

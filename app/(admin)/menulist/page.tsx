@@ -9,8 +9,7 @@ import { Menuitem } from "@/types/menu";
 import DeleteButton from "@/components/buttons/delete-button";
 
 const MenulistPage = async (): Promise<React.ReactNode> => {
-  const data = await fetchMenu();
-  const menuItems = data.data;
+  const menuItems = await fetchMenu();
 
   const totalFoods = await getCountFoods();
 
