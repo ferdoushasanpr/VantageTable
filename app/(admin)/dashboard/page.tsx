@@ -44,10 +44,13 @@ const DashboardPage = async (): Promise<React.ReactNode> => {
       </header>
 
       <div className="grid grid-cols-4 gap-6 mb-10">
-        <StatCard title="Total Food Items" value={totalFoods} />
-        <StatCard title="Total Reservations" value={totalReservations} />
-        <StatCard title="Total Guests" value={totalConfirmedGuests} />
-        <StatCard title="Pending Requests" value={totalPendingReservations} />
+        <StatCard title="Total Food Items" value={`${totalFoods}`} />
+        <StatCard title="Total Reservations" value={`${totalReservations}`} />
+        <StatCard title="Total Guests" value={`${totalConfirmedGuests}`} />
+        <StatCard
+          title="Pending Requests"
+          value={`${totalPendingReservations}`}
+        />
       </div>
 
       <div className="bg-[#1a1610] border border-stone-800/50 rounded-3xl p-6">
