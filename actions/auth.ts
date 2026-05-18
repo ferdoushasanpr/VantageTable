@@ -3,12 +3,19 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-export const loginHandler = async (formData: FormData) => {
+type LoginFormState = {
+  error?: string;
+};
+
+export const loginHandler = async (
+  prevState: LoginFormState,
+  formData: FormData,
+) => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
   if (!email || !password) {
-    throw new Error("Email and password are required");
+    return { ...prevState, error: "Email and password are required" };
   }
 
   if (
@@ -25,7 +32,7 @@ export const loginHandler = async (formData: FormData) => {
     });
     redirect("/dashboard");
   } else {
-    throw new Error("Invalid email or password");
+    return { ...prevState, error: "Invalid email or password" };
   }
 };
 

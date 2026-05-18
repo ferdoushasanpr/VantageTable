@@ -1,7 +1,11 @@
+"use client";
+
 import { loginHandler } from "@/actions/auth";
+import { useActionState } from "react";
 import { Mail, Lock, ShieldCheck } from "lucide-react";
 
 export default function LoginPage() {
+  const [state, formAction] = useActionState(loginHandler, { error: "" });
   return (
     <section className="w-full bg-dark-light p-4 md:py-36">
       <div className="max-w-sm p-10 mx-auto bg-[#12100A] rounded-2xl">
@@ -13,7 +17,12 @@ export default function LoginPage() {
             Sign in to manage your kitchen and staff.
           </p>
         </div>
-        <form className="my-8" action={loginHandler}>
+        <form className="my-8" action={formAction}>
+          {state?.error && (
+            <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-xl text-center mb-4 animate-shake">
+              {state.error}
+            </div>
+          )}
           <div className="flex flex-col py-2">
             <label className="text-white text-sm">Email Address</label>
             <div className="flex items-center border border-[#36302a] my-2 p-3 rounded-2xl focus-within:border-[#F4AF25] transition">
