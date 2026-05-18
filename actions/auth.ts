@@ -28,3 +28,9 @@ export const loginHandler = async (formData: FormData) => {
     throw new Error("Invalid email or password");
   }
 };
+
+export const logoutHandler = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete("admin_session");
+  redirect("/");
+};
