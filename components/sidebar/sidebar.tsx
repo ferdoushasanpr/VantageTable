@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import NavIcon from "@/assets/icons/Icon.png";
 import NavItem from "./sidebar-navitem";
+import { logoutHandler } from "@/actions/auth";
 
 export default function Sidebar(): React.ReactNode {
   return (
@@ -54,7 +55,10 @@ export default function Sidebar(): React.ReactNode {
           href="/settings"
         />
 
-        <button className="w-full bg-[#2a1a15] text-red-400 py-3 rounded-xl flex items-center justify-center gap-2 font-medium hover:bg-red-950/30 transition-colors">
+        <button
+          className="w-full bg-[#2a1a15] text-red-400 py-3 rounded-xl flex items-center justify-center gap-2 font-medium hover:bg-red-950/30 transition-colors"
+          onClick={logoutHandler}
+        >
           <LogOut size={18} />
           Logout
         </button>
