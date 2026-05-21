@@ -132,15 +132,12 @@ export const updateMenuHandler = async (formData: FormData) => {
   }
 
   if (image && image.size === 0) {
-    const existing = await prisma.food.findFirst({
-      where: { id: parsedId },
-      select: { image: true, image_public_id: true },
-    });
+    const existingImageUrl = await fetchMenuImageById(parsedId);
 
-    if (existing) {
+    if (existingImageUrl) {
       imageUrl = {
-        secure_url: existing.image,
-        public_id: existing.image_public_id,
+        secure_url: existingImageUrl.secure_url,
+        public_id: existingImageUrl.public_id,
       };
     }
   }
@@ -212,4 +209,18 @@ export const fetchMenuById = async (id: string) => {
   });
 
   return food;
+};
+
+export const fetchMenuImageById = async (id: number) => {
+  const existing = await prisma.food.findFirst({
+    where: { id: id },
+    select: { image: true, image_public_id: true },
+  });
+
+  if (existing) {
+    return {
+      secure_url: existing.image,
+      public_id: existing.image_public_id,
+    };
+  }
 };
