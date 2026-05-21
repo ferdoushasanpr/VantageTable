@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Info, Settings, Save, Lightbulb } from "lucide-react";
 
 import ImagePicker from "@/components/image-picker";
-import { menuSubmitHandler } from "@/actions/menu";
+import { updateMenuHandler } from "@/actions/menu";
 
 interface MenuProps {
   menu: {
@@ -22,7 +22,7 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
   const [isAvailable, setIsAvailable] = useState(menu.status);
 
   return (
-    <form action={menuSubmitHandler}>
+    <form action={updateMenuHandler}>
       <input type="hidden" name="id" value={menu.id} />
 
       <div className="grid grid-cols-12 gap-8">
