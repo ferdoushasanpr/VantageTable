@@ -20,8 +20,6 @@ const UpdateMenuPage = async ({
 
   const menu = await fetchMenuById(id);
 
-  console.log(menu);
-
   if (!menu) {
     throw new Error("Menu not found");
   }
