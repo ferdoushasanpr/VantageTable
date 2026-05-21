@@ -1,8 +1,16 @@
 import { Upload } from "lucide-react";
 import React, { ChangeEvent, useRef, useState } from "react";
 
-export default function ImagePicker(): React.ReactNode {
-  const [pickedImage, setPickedImage] = useState<string | null>(null);
+interface ImagePickerProps {
+  defaultImage?: string;
+}
+
+export default function ImagePicker({
+  defaultImage,
+}: ImagePickerProps): React.ReactNode {
+  const [pickedImage, setPickedImage] = useState<string | null>(
+    defaultImage || null,
+  );
   const imageReference = useRef<HTMLInputElement>(null);
 
   const imageInputHandler = () => {
@@ -59,7 +67,7 @@ export default function ImagePicker(): React.ReactNode {
         <div className="flex gap-3">
           <img
             src={pickedImage}
-            className="w-14 h-14 rounded-xl object-cover border-2 border-[#F5A623]"
+            className="w-26 h-26 rounded-xl object-cover border-2 border-[#F5A623]"
             alt="prev"
           />
         </div>

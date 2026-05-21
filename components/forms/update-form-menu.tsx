@@ -13,6 +13,7 @@ interface MenuProps {
     cat: string;
     price: number;
     desc: string;
+    image: string;
     status: boolean;
   };
 }
@@ -25,9 +26,7 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
       <input type="hidden" name="id" value={menu.id} />
 
       <div className="grid grid-cols-12 gap-8">
-        {/* LEFT SIDE */}
         <div className="col-span-8 space-y-6">
-          {/* GENERAL INFO */}
           <section className="bg-[#1D1912] p-8 rounded-3xl border border-[#2A2419]">
             <div className="flex items-center gap-2 mb-6">
               <Info size={20} className="text-primary" />
@@ -35,7 +34,6 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
             </div>
 
             <div className="space-y-6">
-              {/* FOOD NAME */}
               <div>
                 <label className="block text-sm text-primary mb-2 font-medium">
                   Food Name
@@ -50,7 +48,6 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
                 />
               </div>
 
-              {/* CATEGORY + PRICE */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm text-primary mb-2 font-medium">
@@ -85,7 +82,6 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
                 </div>
               </div>
 
-              {/* DESCRIPTION */}
               <div>
                 <label className="block text-sm text-primary mb-2 font-medium">
                   Description
@@ -102,7 +98,6 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
             </div>
           </section>
 
-          {/* AVAILABILITY */}
           <section className="bg-[#1D1912] p-8 rounded-3xl border border-[#2A2419]">
             <div className="flex items-center gap-2 mb-6">
               <Settings size={20} className="text-primary" />
@@ -142,11 +137,9 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
           </section>
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="col-span-4 space-y-6">
-          <ImagePicker />
+          <ImagePicker defaultImage={menu.image} />
 
-          {/* SUBMIT */}
           <button
             type="submit"
             className="w-full bg-primary text-[#120F08] py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#d98f1d] transition-all"
@@ -155,7 +148,6 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
             SAVE FOOD ITEM
           </button>
 
-          {/* DISCARD */}
           <button
             type="button"
             className="w-full bg-[#262118] text-light py-4 rounded-xl font-bold border border-[#332D21]"
@@ -163,7 +155,6 @@ const UpdateFormMenu = ({ menu }: MenuProps): React.ReactNode => {
             Discard Changes
           </button>
 
-          {/* TIP */}
           <div className="bg-[#231F16]/50 p-6 rounded-2xl border border-[#332D21] flex gap-4">
             <Lightbulb className="text-primary shrink-0" size={24} />
 
