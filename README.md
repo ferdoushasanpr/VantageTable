@@ -4,6 +4,8 @@
 
 Users can explore delicious dishes, filter menu items, reserve tables, and interact with an AI-powered chatbot for instant assistance, while admins can manage reservations and food items efficiently through a secure dashboard.
 
+🔗 **Live Demo:** [https://gourmet-haven-phi.vercel.app/](https://gourmet-haven-phi.vercel.app/)
+
 ---
 
 ## 🚀 Tech Stack
