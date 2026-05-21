@@ -1,15 +1,32 @@
-"use client";
-
+import React from "react";
 import UpdateFormMenu from "@/components/forms/update-form-menu";
-import { useSearchParams } from "next/navigation";
+import { fetchMenuById } from "@/actions/menu";
 
-const UpdateMenuPage = (): React.ReactNode => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  console.log(id);
+interface PageProps {
+  searchParams: {
+    id?: string;
+  };
+}
+
+const UpdateMenuPage = async ({
+  searchParams,
+}: PageProps): Promise<React.ReactNode> => {
+  const params = await searchParams;
+  const id = params.id;
+
+  if (!id) {
+    throw new Error("ID is required");
+  }
+
+  const menu = await fetchMenuById(id);
+
+  if (!menu) {
+    throw new Error("Menu not found");
+  }
+
   return (
     <main className="flex-1 p-10 overflow-y-auto">
-      <UpdateFormMenu />
+      <UpdateFormMenu menu={menu} />
     </main>
   );
 };
