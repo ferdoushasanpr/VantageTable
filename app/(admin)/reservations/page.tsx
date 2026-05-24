@@ -14,8 +14,15 @@ import { getNameInitial } from "@/utilities/nameInitial";
 import { Reservation } from "@/types/reservation";
 import EditButton from "@/components/buttons/edit-button";
 import DeleteButton from "@/components/buttons/delete-button";
+import Link from "next/link";
 
-const ReservationsPage = async (): Promise<React.ReactNode> => {
+const ReservationsPage = async ({
+  searchParams,
+}: {
+  searchParams: { sort?: string };
+}): Promise<React.ReactNode> => {
+  const resolvedParams = await searchParams;
+  const sortOption = resolvedParams.sort || "newest";
   const reservations = await getAllReservations();
 
   return (
@@ -49,15 +56,24 @@ const ReservationsPage = async (): Promise<React.ReactNode> => {
             </button>
             <div className="hidden group-hover:block absolute right-0 mt-2 w-48 bg-[#1D1912] border border-[#2A2419] rounded-xl shadow-xl z-50 overflow-hidden separation-y division-[#2A2419]">
               <div className="py-1">
-                <button className="w-full text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors">
+                <Link
+                  href="?sort=newest"
+                  className="w-full block text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors"
+                >
                   Newest First
-                </button>
-                <button className="w-full text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors">
+                </Link>
+                <Link
+                  href="?sort=oldest"
+                  className="w-full block text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors"
+                >
                   Oldest First
-                </button>
-                <button className="w-full text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors">
+                </Link>
+                <Link
+                  href="?sort=recent"
+                  className="w-full block text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors"
+                >
                   Most Recent Activity
-                </button>
+                </Link>
               </div>
             </div>
           </div>
