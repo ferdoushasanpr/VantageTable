@@ -43,9 +43,24 @@ const ReservationsPage = async (): Promise<React.ReactNode> => {
           <button className="bg-[#1D1912] text-[#E0D7C6] border border-[#2A2419] px-4 py-2 rounded-xl text-sm flex items-center gap-2 hover:border-[#F5A623] transition-colors">
             <Filter size={16} /> Filter
           </button>
-          <button className="bg-[#1D1912] text-[#E0D7C6] border border-[#2A2419] px-4 py-2 rounded-xl text-sm flex items-center gap-2 hover:border-[#F5A623] transition-colors">
-            Sort by Date <ChevronDown size={16} />
-          </button>
+          <div className="relative group">
+            <button className="bg-[#1D1912] text-[#E0D7C6] border border-[#2A2419] px-4 py-2 rounded-xl text-sm flex items-center gap-2 hover:border-[#F5A623] transition-colors">
+              Sort by Date <ChevronDown size={16} />
+            </button>
+            <div className="hidden group-hover:block absolute right-0 mt-2 w-48 bg-[#1D1912] border border-[#2A2419] rounded-xl shadow-xl z-50 overflow-hidden separation-y division-[#2A2419]">
+              <div className="py-1">
+                <button className="w-full text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors">
+                  Newest First
+                </button>
+                <button className="w-full text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors">
+                  Oldest First
+                </button>
+                <button className="w-full text-left px-4 py-2.5 text-sm text-[#E0D7C6] hover:bg-[#2A2419] hover:text-[#F5A623] transition-colors">
+                  Most Recent Activity
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
