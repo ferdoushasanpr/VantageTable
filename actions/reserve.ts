@@ -71,8 +71,12 @@ export const reservationInputHandler = async (
   redirect("/bookings");
 };
 
-export const getAllReservations = async () => {
-  const reservations = await prisma.reservation.findMany();
+export const getAllReservations = async (type: "newest" | "oldest") => {
+  const reservations = await prisma.reservation.findMany({
+    orderBy: {
+      date: type === "newest" ? "desc" : "asc",
+    },
+  });
 
   return reservations;
 };
