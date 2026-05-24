@@ -23,7 +23,9 @@ const ReservationsPage = async ({
 }): Promise<React.ReactNode> => {
   const resolvedParams = await searchParams;
   const sortOption = resolvedParams.sort || "newest";
-  const reservations = await getAllReservations();
+  const reservations = await getAllReservations(
+    sortOption as "newest" | "oldest",
+  );
 
   return (
     <main className="flex-1 p-10 flex flex-col">
